@@ -1,2 +1,2 @@
-# tags
-tags for a special something
+# Tags/Ranks
+Tags/Ranks for a special something
