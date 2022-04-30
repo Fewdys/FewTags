@@ -1,2 +1,2 @@
 # Tags/Ranks
-Tags/Ranks to mark Friends, Wholesome Users, Staff/Admins//Devs/Owners Of Various Different Things Including But Not Limited To VRChat Team, and Bad Users/Monkey's
+Tags/Ranks to mark Friends, Wholesome Users, Staff, Admins, Creators, Devs, Owners, Bad Users/Monkeys and Various Different Things Including But Not Limited To VRChat Team.
