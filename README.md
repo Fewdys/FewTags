@@ -1,2 +1,2 @@
 # Tags/Ranks
-Tags/Ranks for a special something
+Tags/Ranks to mark Friends, Wholesome Users, and Bad Users Or Monkey's
