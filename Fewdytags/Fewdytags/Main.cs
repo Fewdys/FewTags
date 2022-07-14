@@ -26,7 +26,7 @@ namespace Fewdytags
         {
             using (WebClient wc = new WebClient())
             {
-                s_rawTags = wc.DownloadString("https://raw.githubusercontent.com/Fewdys/tags/main/Nameplates.json");
+                s_rawTags = wc.DownloadString("https://raw.githubusercontent.com/Fewdys/tags/main/NamePlatesv2.json");
                 s_tags = JsonConvert.DeserializeObject<Json.Tags>(s_rawTags);
             }
             NativeHook();
