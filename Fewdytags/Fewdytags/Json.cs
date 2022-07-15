@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fewdytags
+namespace FewTags
 {
     internal class Json
     {
@@ -20,6 +20,7 @@ namespace Fewdytags
             public int id { get; set; }
             public string UserID { get; set; }
             public string Text { get; set; }
+            public bool Active { get; set; }
         }
     }
 }
