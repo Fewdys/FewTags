@@ -176,7 +176,7 @@ namespace FewTags
                 for (int i = 0; i < s_tagsArr.Length; i++)
                 {
                     if (!s_tagsArr[i].Active) continue;
-                    s_plate.Text.text += $"<color=#ffffff>[</color><color=#808080>{s_tagsArr[i].id}</color><color=#ffffff>] - </color>{s_tagsArr[i].Text}<color=#ffffff> ";
+                    s_plate.Text.text += $"{s_tagsArr[i].Size}<color=#ffffff>[</color><color=#808080>{s_tagsArr[i].id}</color><color=#ffffff>] - </color>{s_tagsArr[i].Text}<color=#ffffff></size ";
                 }
 
             }));

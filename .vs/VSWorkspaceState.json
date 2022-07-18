@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Fewdytags",
+    "\\Fewdytags\\Fewdytags"
   ],
-  "SelectedNode": "\\Fewdytags.sln",
+  "SelectedNode": "\\Fewdytags\\FewTags.sln",
   "PreviewInSolutionExplorer": false
 }
