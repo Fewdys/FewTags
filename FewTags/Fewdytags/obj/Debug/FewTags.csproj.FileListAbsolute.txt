@@ -258,8 +258,8 @@ C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\bin\Debug\Unity.
 C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\bin\Debug\VRC.Udon.VM.dll
 C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\bin\Debug\Il2CppSystem.Buffers.dll
 C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\bin\Debug\MelonLoader.xml
-C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\obj\Debug\FewTags.csproj.AssemblyReference.cache
 C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\obj\Debug\FewTags.csproj.CoreCompileInputs.cache
 C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\obj\Debug\FewTags.csproj.CopyComplete
 C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\obj\Debug\FewTags.dll
 C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\obj\Debug\FewTags.pdb
+C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\obj\Debug\FewTags.csproj.AssemblyReference.cache

@@ -19,8 +19,14 @@ namespace FewTags
         {
             public int id { get; set; }
             public string UserID { get; set; }
-            public string Text { get; set; }
+            public string PlateText { get; set; }
+            public string PlateText2 { get; set; }
+            public string PlateText3 { get; set; }
+            public bool Malicious { get; set; }
             public bool Active { get; set; }
+            public bool TextActive { get; set; }
+            public bool Text2Active { get; set; }
+            public bool Text3Active { get; set; }
             public string Size { get; set; }
         }
     }
