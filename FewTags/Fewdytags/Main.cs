@@ -226,11 +226,6 @@ namespace FewTags
         }
 
 
-        private static void OnWorldChange()
-        {
-
-        }
-
         private static void OnJoin(IntPtr _instance, IntPtr _user, IntPtr _methodInfo)
         {
             s_userJoined(_instance, _user, _methodInfo);
@@ -320,22 +315,6 @@ namespace FewTags
                     }
                 }
             }));
-        }
-
-        void Updatehud()
-        {
-            try { if (VRC.Player.prop_Player_0.gameObject == null) return; } catch { return; }
-
-            try
-            {
-                if (Main._queueDictionary.Count != 0)
-                {
-                    for (int i = 0; i < Main._queueDictionary.Count; i++)
-                        Main._queueDictionary.ElementAt(i).Value.Invoke();
-
-                }
-            }
-            catch { }
         }
     }
 }

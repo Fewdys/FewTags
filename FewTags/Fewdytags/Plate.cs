@@ -74,7 +74,7 @@ namespace FewTags
             _gameObject3.transform.localPosition = new Vector3(0, Main.Position3, 0);
             _gameObject4.transform.localPosition = new Vector3(0, Main.PositionMalicious, 0);
             _gameObject5.transform.localPosition = new Vector3(0, Main.PositionBigText, 0);
-            _gameObject5.GetComponent<ImageThreeSlice>().color = new Color(1, 1, 1, 0.05f);
+            _gameObject5.GetComponent<ImageThreeSlice>().color = new Color(1, 1, 1, 0f);
             _gameObject5.GetComponentInChildren<TMPro.TextMeshProUGUI>().color = new Color(1, 1, 1, 0.45f);
             _gameObject5.GetComponentInChildren<TMPro.TextMeshProUGUI>().outlineColor = new Color(1, 1, 1, 1f);
             Text = _gameObject.transform.Find("Trust Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
