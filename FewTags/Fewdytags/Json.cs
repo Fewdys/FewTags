@@ -22,11 +22,13 @@ namespace FewTags
             public string PlateText { get; set; }
             public string PlateText2 { get; set; }
             public string PlateText3 { get; set; }
+            public string PlateBigText { get; set; }
             public bool Malicious { get; set; }
             public bool Active { get; set; }
             public bool TextActive { get; set; }
             public bool Text2Active { get; set; }
             public bool Text3Active { get; set; }
+            public bool BigTextActive { get; set; }
             public string Size { get; set; }
         }
     }

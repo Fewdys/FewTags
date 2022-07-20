@@ -33,10 +33,8 @@ namespace FewTags
         internal static float Position2 { get; set; }
         internal static float Position3 { get; set; }
         internal static float PositionMalicious { get; set; }
+        internal static float PositionBigText { get; set; }
         private static string s_stringInstance { get; set; }
-        public static string s_stringText { get; set; }
-        public static string s_stringText2 { get; set; }
-        public static string s_stringText3 { get; set; }
         internal static Dictionary<string, Action> _queueDictionary;
 
 
@@ -59,7 +57,7 @@ namespace FewTags
 
             using (WebClient wc = new WebClient())
             {
-                s_rawTags = wc.DownloadString("https://raw.githubusercontent.com/Fewdys/tags/main/FewTagsv2.json");
+                s_rawTags = wc.DownloadString("https://raw.githubusercontent.com/Fewdys/tags/main/FewTags.json");
                 s_tags = JsonConvert.DeserializeObject<Json.Tags>(s_rawTags);
             }
             NativeHook();
@@ -73,6 +71,8 @@ namespace FewTags
                 Position = -171f;
                 Position2 = -199f;
                 Position3 = -227f;
+                PositionBigText = -283f;
+
             }
             //If ProPlates and Abyss are Loaded
             else if (!FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
@@ -81,6 +81,7 @@ namespace FewTags
                 Position = -142.1f;
                 Position2 = -170.1f;
                 Position3 = -198.1f;
+                PositionBigText = -254.1f;
             }
             //If ProPlates and FewMod are Loaded
             else if (!FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
@@ -89,6 +90,7 @@ namespace FewTags
                 Position = -142.1f;
                 Position2 = -170.1f;
                 Position3 = -198.1f;
+                PositionBigText = -254.1f;
             }
             //If ProPlates, FewMod and Snaxy are Loaded
             else if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
@@ -97,6 +99,7 @@ namespace FewTags
                 Position = -171f;
                 Position2 = -199f;
                 Position3 = -227f;
+                PositionBigText = -283f;
             }
             //If Abyss, FewMod and Snaxy are Loaded
             else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
@@ -105,6 +108,7 @@ namespace FewTags
                 Position = -142.1f;
                 Position2 = -170.1f;
                 Position3 = -198.1f;
+                PositionBigText = -254.1f;
             }
             //If ProPlates, FewMod and Abyss are Loaded
             else if (!FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
@@ -113,6 +117,7 @@ namespace FewTags
                 Position = -171f;
                 Position2 = -199f;
                 Position3 = -227f;
+                PositionBigText = -283f;
             }
             //If Snaxy and Abyss are Loaded
             else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
@@ -121,6 +126,7 @@ namespace FewTags
                 Position = -142.1f;
                 Position2 = -170.1f;
                 Position3 = -198.1f;
+                PositionBigText = -254.1f;
             }
             //If FewMod and Abyss are Loaded
             else if (!FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
@@ -129,6 +135,7 @@ namespace FewTags
                 Position = -171f;
                 Position2 = -199f;
                 Position3 = -227f;
+                PositionBigText = -283f;
             }
             //If FewMod and Snaxy are Loaded
             else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
@@ -137,6 +144,7 @@ namespace FewTags
                 Position = -142.1f;
                 Position2 = -170.1f;
                 Position3 = -198.1f;
+                PositionBigText = -254.1f;
             }
             //If Snaxy and ProPlates are Loaded
             else if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
@@ -145,6 +153,7 @@ namespace FewTags
                 Position = -142.1f;
                 Position2 = -170.1f;
                 Position3 = -198.1f;
+                PositionBigText = -254.1f;
             }
             //If Nothing Is Loaded
             else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
@@ -153,6 +162,7 @@ namespace FewTags
                 Position = -85.75f;
                 Position2 = -113.75f;
                 Position3 = -141.75f;
+                PositionBigText = -197.75f;
             }
             //If Abyss Is Loaded
             else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
@@ -161,6 +171,7 @@ namespace FewTags
                 Position = -142.1f;
                 Position2 = -170.1f;
                 Position3 = -198.1f;
+                PositionBigText = -254.1f;
             }
             //If ProPlates Is Loaded
             else if (FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
@@ -169,6 +180,7 @@ namespace FewTags
                 Position = -115.75f;
                 Position2 = -143.75f;
                 Position3 = -171.75f;
+                PositionBigText = -227.75f;
             }
             //If FewMod Is Loaded
             else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
@@ -177,6 +189,7 @@ namespace FewTags
                 Position = -142.1f;
                 Position2 = -170.1f;
                 Position3 = -198.1f;
+                PositionBigText = -254.1f;
             }
             //If Snaxy Is Loaded
             else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
@@ -185,6 +198,7 @@ namespace FewTags
                 Position = -118f;
                 Position2 = -146f;
                 Position3 = -174f;
+                PositionBigText = -230f;
             }
         }
 
@@ -239,17 +253,13 @@ namespace FewTags
                 for (int i = 0; i < s_tagsArr.Length; i++)
                 {
                     if (!s_tagsArr[i].Active) continue;
-                    try { if (VRC.Player.prop_Player_0.gameObject == null) return; } catch { return; }
                     s_stringInstance = s_tagsArr[i].Size == null ? "" : s_tagsArr[i].Size;
-                    s_stringText = s_tagsArr[i].PlateText == null ? "" : s_tagsArr[i].PlateText;
-                    s_stringText2 = s_tagsArr[i].PlateText2 == null ? "" : s_tagsArr[i].PlateText2;
-                    s_stringText3 = s_tagsArr[i].PlateText3 == null ? "" : s_tagsArr[i].PlateText3;
                     if (!s_tagsArr[i].TextActive)
                     {
                         s_plate.Text.enabled = false;
                         s_plate.Text.gameObject.SetActive(false);
                         s_plate.Text.gameObject.transform.parent.gameObject.SetActive(false);
-                        s_plate.Text.text += $"{s_stringInstance}<color=#ffffff>[</color><color=#808080>{s_tagsArr[i].id}</color><color=#ffffff>] - </color>{s_tagsArr[i].PlateText}</size> ";
+                        s_plate.Text.text += $"<color=#ffffff>[</color><color=#808080>{s_tagsArr[i].id}</color><color=#ffffff>] - </color>{s_tagsArr[i].PlateText}";
                     }
                     if (!s_tagsArr[i].Text2Active)
                     {
@@ -265,9 +275,16 @@ namespace FewTags
                         s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(false);
                         s_plate.Text3.text += $"{s_tagsArr[i].PlateText3}";
                     }
+                    if (!s_tagsArr[i].BigTextActive)
+                    {
+                        s_plate.Text5.enabled = false;
+                        s_plate.Text5.gameObject.SetActive(false);
+                        s_plate.Text5.gameObject.transform.parent.gameObject.SetActive(false);
+                        s_plate.Text5.text += $"{s_stringInstance}{s_tagsArr[i].PlateBigText}</size> ";
+                    }
                     if (s_tagsArr[i].TextActive)
                     {
-                        s_plate.Text.text += $"{s_stringInstance}<color=#ffffff>[</color><color=#808080>{s_tagsArr[i].id}</color><color=#ffffff>] - </color>{s_tagsArr[i].PlateText}</size> ";
+                        s_plate.Text.text += $"<color=#ffffff>[</color><color=#808080>{s_tagsArr[i].id}</color><color=#ffffff>] - </color>{s_tagsArr[i].PlateText}";
                         s_plate.Text.enabled = true;
                         s_plate.Text.gameObject.SetActive(true);
                         s_plate.Text.gameObject.transform.parent.gameObject.SetActive(true);
@@ -285,6 +302,13 @@ namespace FewTags
                         s_plate.Text3.enabled = true;
                         s_plate.Text3.gameObject.SetActive(true);
                         s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(true);
+                    }
+                    if (s_tagsArr[i].BigTextActive)
+                    {
+                        s_plate.Text5.text += $"{s_stringInstance}{s_tagsArr[i].PlateBigText}</size> ";
+                        s_plate.Text5.enabled = true;
+                        s_plate.Text5.gameObject.SetActive(true);
+                        s_plate.Text5.gameObject.transform.parent.gameObject.SetActive(true);
                     }
                     if (s_tagsArr[i].Malicious is false)
                     {
