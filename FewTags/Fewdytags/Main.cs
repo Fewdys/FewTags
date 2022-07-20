@@ -57,7 +57,7 @@ namespace FewTags
 
             using (WebClient wc = new WebClient())
             {
-                s_rawTags = wc.DownloadString("https://raw.githubusercontent.com/Fewdys/tags/main/FewTagsv2.json");
+                s_rawTags = wc.DownloadString("https://raw.githubusercontent.com/Fewdys/tags/main/FewTags.json");
                 s_tags = JsonConvert.DeserializeObject<Json.Tags>(s_rawTags);
             }
             NativeHook();
