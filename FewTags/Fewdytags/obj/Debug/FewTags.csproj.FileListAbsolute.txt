@@ -262,4 +262,3 @@ C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\obj\Debug\FewTag
 C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\obj\Debug\FewTags.csproj.CopyComplete
 C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\obj\Debug\FewTags.dll
 C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\obj\Debug\FewTags.pdb
-C:\Users\dipze\Desktop\FewTags\FewTags-Master\FewTags\Fewdytags\obj\Debug\FewTags.csproj.AssemblyReference.cache
