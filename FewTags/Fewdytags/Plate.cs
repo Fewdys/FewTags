@@ -1,16 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using TMPro;
+﻿using System.Linq;
 using UnityEngine;
-using VRC;
-using FewTags;
-using MelonLoader;
-using UnhollowerBaseLib;
-using UnityEngine.UI;
 
 namespace FewTags
 {

@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using MelonLoader;
 using System.Net;
 using Newtonsoft.Json;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using UnityEngine;
-using UnhollowerBaseLib;
-using BestHTTP.JSON;
-
-
 
 //Thanks To Edward7 For Helping Me Redo This
 
@@ -35,7 +29,6 @@ namespace FewTags
         internal static float PositionMalicious { get; set; }
         internal static float PositionBigText { get; set; }
         private static string s_stringInstance { get; set; }
-        internal static Dictionary<string, Action> _queueDictionary;
 
 
         private delegate IntPtr userJoined(IntPtr _instance, IntPtr _user, IntPtr _methodinfo);
@@ -52,7 +45,6 @@ namespace FewTags
             ErrorClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "ErrorClient");
             FewModLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "FewMod");
             MelonLogger.Msg(ConsoleColor.Green, "Started FewTags");
-            Main._queueDictionary = new Dictionary<string, Action>();
 
 
             using (WebClient wc = new WebClient())
@@ -254,28 +246,24 @@ namespace FewTags
                         s_plate.Text.enabled = false;
                         s_plate.Text.gameObject.SetActive(false);
                         s_plate.Text.gameObject.transform.parent.gameObject.SetActive(false);
-                        s_plate.Text.text += $"<color=#ffffff>[</color><color=#808080>{s_tagsArr[i].id}</color><color=#ffffff>] - </color>{s_tagsArr[i].PlateText}";
                     }
                     if (!s_tagsArr[i].Text2Active)
                     {
                         s_plate.Text2.enabled = false;
                         s_plate.Text2.gameObject.SetActive(false);
                         s_plate.Text2.gameObject.transform.parent.gameObject.SetActive(false);
-                        s_plate.Text2.text += $"{s_tagsArr[i].PlateText2}";
                     }
                     if (!s_tagsArr[i].Text3Active)
                     {
                         s_plate.Text3.enabled = false;
                         s_plate.Text3.gameObject.SetActive(false);
                         s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(false);
-                        s_plate.Text3.text += $"{s_tagsArr[i].PlateText3}";
                     }
                     if (!s_tagsArr[i].BigTextActive)
                     {
                         s_plate.Text5.enabled = false;
                         s_plate.Text5.gameObject.SetActive(false);
                         s_plate.Text5.gameObject.transform.parent.gameObject.SetActive(false);
-                        s_plate.Text5.text += $"{s_stringInstance}{s_tagsArr[i].PlateBigText}</size> ";
                     }
                     if (s_tagsArr[i].TextActive)
                     {
