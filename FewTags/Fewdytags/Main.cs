@@ -21,7 +21,7 @@ namespace FewTags
         public static bool SnaxyTagsLoaded { get; private set; }
         public static bool ProPlatesLoaded { get; private set; }
         public static bool AbyssClientLoaded { get; private set; }
-        public static bool FewModLoaded { get; private set; }
+        public static bool AstrayLoaded { get; private set; }
         public static bool ErrorClientLoaded { get; private set; }
         internal static float Position { get; set; }
         internal static float Position2 { get; set; }
@@ -43,7 +43,7 @@ namespace FewTags
             ProPlatesLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "ProPlates");
             AbyssClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "AbyssLoader");
             ErrorClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "ErrorClient");
-            FewModLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "FewMod");
+            AstrayLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "Astray");
             MelonLogger.Msg(ConsoleColor.Green, "Started FewTags");
 
 
@@ -56,8 +56,8 @@ namespace FewTags
 
             //Checks For Other Mods
 
-            //If Snaxy, ProPlates, Abyss and FewMod are Loaded
-            if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
+            //If Snaxy, ProPlates, Abyss and Astray are Loaded
+            if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -143f;
                 Position = -171f;
@@ -67,7 +67,7 @@ namespace FewTags
 
             }
             //If ProPlates and Abyss are Loaded
-            else if (!FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
+            else if (!FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -114.1f;
                 Position = -142.1f;
@@ -75,8 +75,8 @@ namespace FewTags
                 Position3 = -198.1f;
                 PositionBigText = -254.1f;
             }
-            //If ProPlates and FewMod are Loaded
-            else if (!FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
+            //If ProPlates and Astray are Loaded
+            else if (!FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -114.1f;
                 Position = -142.1f;
@@ -84,8 +84,8 @@ namespace FewTags
                 Position3 = -198.1f;
                 PositionBigText = -254.1f;
             }
-            //If ProPlates, FewMod and Snaxy are Loaded
-            else if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
+            //If ProPlates, Astray and Snaxy are Loaded
+            else if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -143f;
                 Position = -171f;
@@ -93,8 +93,8 @@ namespace FewTags
                 Position3 = -227f;
                 PositionBigText = -283f;
             }
-            //If Abyss, FewMod and Snaxy are Loaded
-            else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
+            //If Abyss, Astray and Snaxy are Loaded
+            else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -114.1f;
                 Position = -142.1f;
@@ -102,8 +102,8 @@ namespace FewTags
                 Position3 = -198.1f;
                 PositionBigText = -254.1f;
             }
-            //If ProPlates, FewMod and Abyss are Loaded
-            else if (!FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
+            //If ProPlates, Astray and Abyss are Loaded
+            else if (!FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -143f;
                 Position = -171f;
@@ -112,7 +112,7 @@ namespace FewTags
                 PositionBigText = -283f;
             }
             //If Snaxy and Abyss are Loaded
-            else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
+            else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -114.1f;
                 Position = -142.1f;
@@ -120,8 +120,8 @@ namespace FewTags
                 Position3 = -198.1f;
                 PositionBigText = -254.1f;
             }
-            //If FewMod and Abyss are Loaded
-            else if (!FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
+            //If Astray and Abyss are Loaded
+            else if (!FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -143f;
                 Position = -171f;
@@ -129,8 +129,8 @@ namespace FewTags
                 Position3 = -227f;
                 PositionBigText = -283f;
             }
-            //If FewMod and Snaxy are Loaded
-            else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
+            //If Astray and Snaxy are Loaded
+            else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -114.1f;
                 Position = -142.1f;
@@ -139,7 +139,7 @@ namespace FewTags
                 PositionBigText = -254.1f;
             }
             //If Snaxy and ProPlates are Loaded
-            else if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
+            else if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -114.1f;
                 Position = -142.1f;
@@ -148,7 +148,7 @@ namespace FewTags
                 PositionBigText = -254.1f;
             }
             //If Nothing Is Loaded
-            else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
+            else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -57.75f;
                 Position = -85.75f;
@@ -157,7 +157,7 @@ namespace FewTags
                 PositionBigText = -197.75f;
             }
             //If Abyss Is Loaded
-            else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
+            else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -114.1f;
                 Position = -142.1f;
@@ -166,7 +166,7 @@ namespace FewTags
                 PositionBigText = -254.1f;
             }
             //If ProPlates Is Loaded
-            else if (FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
+            else if (FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -87.75f;
                 Position = -115.75f;
@@ -174,8 +174,8 @@ namespace FewTags
                 Position3 = -171.75f;
                 PositionBigText = -227.75f;
             }
-            //If FewMod Is Loaded
-            else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.FewModLoaded)
+            //If Astray Is Loaded
+            else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -114.1f;
                 Position = -142.1f;
@@ -184,7 +184,7 @@ namespace FewTags
                 PositionBigText = -254.1f;
             }
             //If Snaxy Is Loaded
-            else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.FewModLoaded)
+            else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -90f;
                 Position = -118f;
