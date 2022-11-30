@@ -261,3 +261,4 @@ orleans.codegen.cs
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+/FewTags/Fewdytags/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
