@@ -262,3 +262,5 @@ orleans.codegen.cs
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 /FewTags/Fewdytags/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/FewTags/Fewdytags/bin/Debug/Assembly-CSharp-firstpass.dll
+/FewTags/Fewdytags/bin/Debug/Assembly-CSharp.dll
