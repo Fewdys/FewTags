@@ -130,7 +130,7 @@ namespace FewTags
         }
         public override void OnUpdate()
         {
-           if (Input.GetKeyDown(KeyCode.F) & Input.GetKey(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.F) & Input.GetKey(KeyCode.L))
             {
                 UpdateTags();
             }
