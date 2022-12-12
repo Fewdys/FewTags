@@ -2,6 +2,7 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using VRC.Core;
 using VRC.SDKBase;
 
@@ -28,13 +29,10 @@ namespace FewTags
         private RectTransform[] _rectTransforms { get; set; }
 
         ~Plate() { _rectTransforms = null; _gameObject = null; }
-        public Plate(MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique player/*, float meow*/)
+        public Plate(VRC.Player player/*, float meow*/)
         {
             //Main Plate
-            var PlateManager = Object.FindObjectsOfType<MonoBehaviourPublicObUdObStSiObStAcBoObUnique>().First(x => x.name.StartsWith("_Application")); //MonoBehaviourPublicObUdObStSiObStAcBoObUnique - Used For Getting Application (Where The Plates Are) - On Application & Contains Platforms Such As Android
-            var Chat = Object.FindObjectsOfType<MonoBehaviourPublicObUdObStSiObStAcBoObUnique>().First(x => x.name.StartsWith("_Application"));
-            GameObject nameplate = PlateManager.gameObject.GetComponentsInChildren<MonoBehaviourPublic95VoUnique>().First(x => x.field_Public_MonoBehaviour1PublicOb_pObGa_pStTeObBoStUnique_0.prop_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_0.field_Private_APIUser_0.id == player.field_Private_APIUser_0.id).transform.Find("PlayerNameplate/Canvas/NameplateGroup/Nameplate/Contents/Quick Stats").gameObject; //MonoBehaviourPublic95VoUnique - NameplateContainer (Contains VRCPlayer & Nameplate Container)
-            _gameObject = GameObject.Instantiate(nameplate, nameplate.transform.parent);
+            _gameObject = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
             _gameObject.name = "FewTagsPlate";
             Text = _gameObject.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
             _rectTransforms = _gameObject.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlate").ToArray();
@@ -51,7 +49,7 @@ namespace FewTags
             Text.text = "";
 
             //Plate 2
-            _gameObject2 = GameObject.Instantiate(nameplate, nameplate.transform.parent);
+            _gameObject2 = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
             _gameObject2.name = "FewTagsPlate2";
             Text2 = _gameObject2.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
             _rectTransforms2 = _gameObject2.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlate2").ToArray();
@@ -68,7 +66,7 @@ namespace FewTags
             Text2.text = "";
 
             //Plate3
-            _gameObject3 = GameObject.Instantiate(nameplate, nameplate.transform.parent);
+            _gameObject3 = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
             _gameObject3.name = "FewTagsPlate3";
             Text3 = _gameObject3.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
             _rectTransforms3 = _gameObject3.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlate3").ToArray();
@@ -85,7 +83,7 @@ namespace FewTags
             Text3.text = "";
 
             //Plate4
-            _gameObject4 = GameObject.Instantiate(nameplate, nameplate.transform.parent);
+            _gameObject4 = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject; ;
             _gameObject4.name = "FewTags";
             Text4 = _gameObject4.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
             _rectTransforms4 = _gameObject4.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTags").ToArray();
@@ -102,7 +100,7 @@ namespace FewTags
             Text4.text = "";
 
             //BigPlate
-            _gameObject5 = GameObject.Instantiate(nameplate, nameplate.transform.parent);
+            _gameObject5 = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
             _gameObject5.name = "FewTagsBigPlate";
             Text5 = _gameObject5.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
             _rectTransforms5 = _gameObject5.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsBigPlate").ToArray();
@@ -115,12 +113,13 @@ namespace FewTags
                 catch { }
             }
             _gameObject5.transform.localPosition = new Vector3(0, Main.PositionBigText, 0);
-            _gameObject5.transform.GetComponent<MaskableGraphicPublicSp_sObBoShUISiShBoyOUnique>().color = new Color(1, 1, 1, 0f);
+            _gameObject5.transform.GetComponent<ImageThreeSlice>().color = new Color(1, 1, 1, 0f);
             _gameObject5.SetActive(true);
             Text5.text = "";
 
-            GameObject ChatBubble = Chat.gameObject.GetComponentsInChildren<MonoBehaviourPublic95VoUnique>().First(x => x.field_Public_MonoBehaviour1PublicOb_pObGa_pStTeObBoStUnique_0.prop_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_0.field_Private_APIUser_0.id == player.field_Private_APIUser_0.id).transform.Find("ChatBubble/Canvas").gameObject;
-            ChatBubble.transform.gameObject.GetComponent<MaskableGraphicPublicSp_sObBoShUISiShBoyOUnique>().material.color = new Color(1, 1, 1, 0.375f);
+            var Chat = Object.FindObjectOfType<MonoBehaviourPublic95VoUnique>().transform.gameObject;
+            GameObject ChatBubble = Chat.GetComponent<MonoBehaviourPublic95VoUnique>().transform.FindChild("ChatBubble/Canvas").gameObject;
+            ChatBubble.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
         }
     }
 }
