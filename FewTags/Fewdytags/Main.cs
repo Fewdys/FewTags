@@ -7,6 +7,7 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using VRC.SDKBase;
 
 //Thanks To Edward7 For Helping Me Redo This
 
@@ -38,12 +39,11 @@ namespace FewTags
         public override void OnApplicationStart()
         {
             SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV3"); //For When He Updates It To Be V3
-            SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV3.dll"); //This Is Here Bc Who Fkn Knows With Null
+            SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV3.dll"); //This Is Here Bc Who Fkn Knows With Null - He Likes To Meme
             SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV2");
             ProPlatesLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "ProPlates");
             AbyssClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "AbyssLoader");
             ErrorClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "ErrorClient");
-            AstrayLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "Astray");
             MelonLogger.Msg(ConsoleColor.Green, "Started FewTags");
 
 
@@ -54,10 +54,10 @@ namespace FewTags
             }
             NativeHook();
 
-            //Checks For Other Mods
+            //Checks For Other Mods (Positions For A Fixed ProPlates and Snaxy Aren't Updated - Abyss Positions Might Not Be Updated Now Due To It Being C++)
 
             //If Snaxy, ProPlates, Abyss and Astray are Loaded
-            if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
+            if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded)
             {
                 PositionMalicious = -143f;
                 Position = -171f;
@@ -75,62 +75,8 @@ namespace FewTags
                 Position3 = -198.1f;
                 PositionBigText = -254.1f;
             }
-            //If ProPlates and Astray are Loaded
-            else if (!FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
-            {
-                PositionMalicious = -114.1f;
-                Position = -142.1f;
-                Position2 = -170.1f;
-                Position3 = -198.1f;
-                PositionBigText = -254.1f;
-            }
-            //If ProPlates, Astray and Snaxy are Loaded
-            else if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
-            {
-                PositionMalicious = -143f;
-                Position = -171f;
-                Position2 = -199f;
-                Position3 = -227f;
-                PositionBigText = -283f;
-            }
-            //If Abyss, Astray and Snaxy are Loaded
-            else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
-            {
-                PositionMalicious = -114.1f;
-                Position = -142.1f;
-                Position2 = -170.1f;
-                Position3 = -198.1f;
-                PositionBigText = -254.1f;
-            }
-            //If ProPlates, Astray and Abyss are Loaded
-            else if (!FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
-            {
-                PositionMalicious = -143f;
-                Position = -171f;
-                Position2 = -199f;
-                Position3 = -227f;
-                PositionBigText = -283f;
-            }
             //If Snaxy and Abyss are Loaded
             else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
-            {
-                PositionMalicious = -114.1f;
-                Position = -142.1f;
-                Position2 = -170.1f;
-                Position3 = -198.1f;
-                PositionBigText = -254.1f;
-            }
-            //If Astray and Abyss are Loaded
-            else if (!FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
-            {
-                PositionMalicious = -143f;
-                Position = -171f;
-                Position2 = -199f;
-                Position3 = -227f;
-                PositionBigText = -283f;
-            }
-            //If Astray and Snaxy are Loaded
-            else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -114.1f;
                 Position = -142.1f;
@@ -150,11 +96,11 @@ namespace FewTags
             //If Nothing Is Loaded
             else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
-                PositionMalicious = -57.75f;
-                Position = -85.75f;
-                Position2 = -113.75f;
-                Position3 = -141.75f;
-                PositionBigText = -197.75f;
+                PositionMalicious = -70.95f;
+                Position = -97.95f;
+                Position2 = -124.95f;
+                Position3 = -152.95f;
+                PositionBigText = -218.95f;
             }
             //If Abyss Is Loaded
             else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
@@ -174,15 +120,6 @@ namespace FewTags
                 Position3 = -171.75f;
                 PositionBigText = -227.75f;
             }
-            //If Astray Is Loaded
-            else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & FewTags.Main.AstrayLoaded)
-            {
-                PositionMalicious = -114.1f;
-                Position = -142.1f;
-                Position2 = -170.1f;
-                Position3 = -198.1f;
-                PositionBigText = -254.1f;
-            }
             //If Snaxy Is Loaded
             else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
@@ -196,46 +133,34 @@ namespace FewTags
 
         private unsafe void NativeHook()
         {
-            var methodInfos = typeof(NetworkManager).GetMethods().Where(x => x.Name.StartsWith("Method_Public_Void_Player_")).ToArray();
+            var methodInfos = typeof(MonoBehaviourPrivateAc1AcOb2AcInStHa2Unique).GetMethods().First(x => x.Name == "Method_Public_Void_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_0"); //MonoBehaviourPrivateAc1AcOb2AcInStHa2Unique - NetworkManager (Contains NetworkManager lol) //Method_Public_Void_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_0 - Join Method - Often Changes (Can Get By Hooking NetworkManager)
 
-            for (int i = 0; i < methodInfos.Length; i++)
-            {
-                var mt = UnhollowerRuntimeLib.XrefScans.XrefScanner.XrefScan(methodInfos[i]).ToArray();
-                for (int j = 0; j < mt.Length; j++)
-                {
-                    if (mt[j].Type != UnhollowerRuntimeLib.XrefScans.XrefType.Global) continue;
-
-                    if (mt[j].ReadAsObject().ToString().Contains("OnPlayerJoin"))
-                    {
-                        var methodPointer = *(IntPtr*)(IntPtr)UnhollowerBaseLib.UnhollowerUtils.GetIl2CppMethodInfoPointerFieldForGeneratedMethod(methodInfos[i]).GetValue(null);
-                        MelonUtils.NativeHookAttach((IntPtr)(&methodPointer), typeof(FewTags.Main).GetMethod(nameof(OnJoin), BindingFlags.Static | BindingFlags.NonPublic)!.MethodHandle.GetFunctionPointer());
-                        s_userJoined = Marshal.GetDelegateForFunctionPointer<userJoined>(methodPointer);
-                    }
-
-
-                }
-            }
+            var methodPointer = *(IntPtr*)(IntPtr)UnhollowerBaseLib.UnhollowerUtils.GetIl2CppMethodInfoPointerFieldForGeneratedMethod(methodInfos).GetValue(null);
+            MelonUtils.NativeHookAttach((IntPtr)(&methodPointer), typeof(FewTags.Main).GetMethod(nameof(OnJoin), BindingFlags.Static | BindingFlags.NonPublic)!.MethodHandle.GetFunctionPointer());
+            s_userJoined = Marshal.GetDelegateForFunctionPointer<userJoined>(methodPointer);
         }
+
 
 
         private static void OnJoin(IntPtr _instance, IntPtr _user, IntPtr _methodInfo)
         {
             s_userJoined(_instance, _user, _methodInfo);
-            var vrcPlayer = UnhollowerSupport.Il2CppObjectPtrToIl2CppObject<VRC.Player>(_user);
+            var vrcPlayer = UnhollowerSupport.Il2CppObjectPtrToIl2CppObject<MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique>(_user);
             if (!s_rawTags.Contains(vrcPlayer.field_Private_APIUser_0.id)) return;
             PlateHandler(vrcPlayer);
+            //MelonLogger.Msg("Test");
+            //MelonLogger.Msg(vrcPlayer.field_Private_APIUser_0.displayName + " Has Joined");
         }
 
         private static Plate s_plate { get; set; }
         private static Json.Tag[] s_tagsArr { get; set; }
 
 
-        //Theres Definitely Better Ways To Do This But This Should Be Fine For Now
-        private static void PlateHandler(VRC.Player vrcPlayer)
+        private static void PlateHandler(MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique vrcPlayer) //MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique - Refrence For Updating (Contains id, username, displayname, avatarid ect *vrcplayer*)
         {
-            s_plate = new Plate(vrcPlayer);
-            Task.Run(new Action(() =>
+            try
             {
+                s_plate = new Plate(vrcPlayer);
                 s_tagsArr = s_tags.records.Where(x => x.UserID == vrcPlayer.field_Private_APIUser_0.id).ToArray();
                 for (int i = 0; i < s_tagsArr.Length; i++)
                 {
@@ -246,24 +171,7 @@ namespace FewTags
                         s_plate.Text.enabled = false;
                         s_plate.Text.gameObject.SetActive(false);
                         s_plate.Text.gameObject.transform.parent.gameObject.SetActive(false);
-                    }
-                    if (!s_tagsArr[i].Text2Active)
-                    {
-                        s_plate.Text2.enabled = false;
-                        s_plate.Text2.gameObject.SetActive(false);
-                        s_plate.Text2.gameObject.transform.parent.gameObject.SetActive(false);
-                    }
-                    if (!s_tagsArr[i].Text3Active)
-                    {
-                        s_plate.Text3.enabled = false;
-                        s_plate.Text3.gameObject.SetActive(false);
-                        s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(false);
-                    }
-                    if (!s_tagsArr[i].BigTextActive)
-                    {
-                        s_plate.Text5.enabled = false;
-                        s_plate.Text5.gameObject.SetActive(false);
-                        s_plate.Text5.gameObject.transform.parent.gameObject.SetActive(false);
+
                     }
                     if (s_tagsArr[i].TextActive)
                     {
@@ -271,6 +179,14 @@ namespace FewTags
                         s_plate.Text.enabled = true;
                         s_plate.Text.gameObject.SetActive(true);
                         s_plate.Text.gameObject.transform.parent.gameObject.SetActive(true);
+                    }
+                    if (s_tagsArr[i].Malicious)
+                    {
+                        s_plate.Text4.text += $"<color=#ff0000>Malicious User</color>";
+                    }
+                    if (!s_tagsArr[i].Malicious)
+                    {
+                        s_plate.Text4.text += $"<b><color=#ff0000>-</color> <color=#ff7f00>F</color><color=#ffff00>e</color><color=#80ff00>w</color><color=#00ff00>T</color><color=#00ff80>a</color><color=#00ffff>g</color><color=#0000ff>s</color> <color=#8b00ff>-</color><color=#ffffff></b>";
                     }
                     if (s_tagsArr[i].Text2Active)
                     {
@@ -288,21 +204,56 @@ namespace FewTags
                     }
                     if (s_tagsArr[i].BigTextActive)
                     {
-                        s_plate.Text5.text += $"{s_stringInstance}{s_tagsArr[i].PlateBigText}</size> ";
+                        s_plate.Text5.text += $"{s_stringInstance}{s_tagsArr[i].PlateBigText}</size>";
                         s_plate.Text5.enabled = true;
                         s_plate.Text5.gameObject.SetActive(true);
                         s_plate.Text5.gameObject.transform.parent.gameObject.SetActive(true);
                     }
-                    if (s_tagsArr[i].Malicious is false)
+                    else if (!s_tagsArr[i].Text2Active & !s_tagsArr[i].Text3Active & !s_tagsArr[i].BigTextActive)
                     {
-                        s_plate.Text4.text = $"<b><color=#ff0000>-</color> <color=#ff7f00>F</color><color=#ffff00>e</color><color=#80ff00>w</color><color=#00ff00>T</color><color=#00ff80>a</color><color=#00ffff>g</color><color=#0000ff>s</color> <color=#8b00ff>-</color><color=#ffffff></b> ";
+                        s_plate.Text2.enabled = false;
+                        s_plate.Text2.gameObject.SetActive(false);
+                        s_plate.Text2.gameObject.transform.parent.gameObject.SetActive(false);
+                        s_plate.Text3.enabled = false;
+                        s_plate.Text3.gameObject.SetActive(false);
+                        s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(false);
+                        s_plate.Text5.enabled = false;
+                        s_plate.Text5.gameObject.SetActive(false);
+                        s_plate.Text5.gameObject.transform.parent.gameObject.SetActive(false);
                     }
-                    if (s_tagsArr[i].Malicious is true)
+                    else if (!s_tagsArr[i].Text2Active & !s_tagsArr[i].Text3Active)
                     {
-                        s_plate.Text4.text = $"<color=#ff0000>Malicious User</color>";
+                        s_plate.Text2.enabled = false;
+                        s_plate.Text2.gameObject.SetActive(false);
+                        s_plate.Text2.gameObject.transform.parent.gameObject.SetActive(false);
+                        s_plate.Text3.enabled = false;
+                        s_plate.Text3.gameObject.SetActive(false);
+                        s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(false);
+                    }
+                    else if (!s_tagsArr[i].Text3Active)
+                    {
+                        s_plate.Text3.text += $"{s_tagsArr[i].PlateText3}";
+                        s_plate.Text3.enabled = false;
+                        s_plate.Text3.gameObject.SetActive(false);
+                        s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(false);
+                    }
+                    else if (!s_tagsArr[i].Text2Active)
+                    {
+                        s_plate.Text2.text += $"{s_tagsArr[i].PlateText2}";
+                        s_plate.Text2.enabled = false;
+                        s_plate.Text2.gameObject.SetActive(false);
+                        s_plate.Text2.gameObject.transform.parent.gameObject.SetActive(false);
+                    }
+                    else if (!s_tagsArr[i].BigTextActive)
+                    {
+                        s_plate.Text5.text += $"{s_stringInstance}{s_tagsArr[i].PlateBigText}";
+                        s_plate.Text5.enabled = false;
+                        s_plate.Text5.gameObject.SetActive(false);
+                        s_plate.Text5.gameObject.transform.parent.gameObject.SetActive(false);
                     }
                 }
-            }));
+            }
+            catch { }
         }
     }
 }

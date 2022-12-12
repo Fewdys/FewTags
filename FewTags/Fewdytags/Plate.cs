@@ -1,5 +1,11 @@
-﻿using System.Linq;
+﻿using BestHTTP.SecureProtocol.Org.BouncyCastle.Pkix;
+using System.Linq;
+using TMPro;
 using UnityEngine;
+using VRC.Core;
+using VRC.SDKBase;
+
+//Code Is Still Aids But It Is What It Is Bc I Don't Feel Like Redoing The Json's
 
 namespace FewTags
 {
@@ -22,60 +28,99 @@ namespace FewTags
         private RectTransform[] _rectTransforms { get; set; }
 
         ~Plate() { _rectTransforms = null; _gameObject = null; }
-        //This Is A Kinda Aids To Read
-        //Theres Definitely Better Ways To Do This But This Should Be Fine For Now
-        public Plate(VRC.Player player)
+        public Plate(MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique player/*, float meow*/)
         {
-            _gameObject = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
-            _gameObject2 = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
-            _gameObject3 = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
-            _gameObject4 = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
-            _gameObject5 = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
+            //Main Plate
+            var PlateManager = Object.FindObjectsOfType<MonoBehaviourPublicObUdObStSiObStAcBoObUnique>().First(x => x.name.StartsWith("_Application")); //MonoBehaviourPublicObUdObStSiObStAcBoObUnique - Used For Getting Application (Where The Plates Are) - On Application & Contains Platforms Such As Android
+            var Chat = Object.FindObjectsOfType<MonoBehaviourPublicObUdObStSiObStAcBoObUnique>().First(x => x.name.StartsWith("_Application"));
+            GameObject nameplate = PlateManager.gameObject.GetComponentsInChildren<MonoBehaviourPublic95VoUnique>().First(x => x.field_Public_MonoBehaviour1PublicOb_pObGa_pStTeObBoStUnique_0.prop_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_0.field_Private_APIUser_0.id == player.field_Private_APIUser_0.id).transform.Find("PlayerNameplate/Canvas/NameplateGroup/Nameplate/Contents/Quick Stats").gameObject; //MonoBehaviourPublic95VoUnique - NameplateContainer (Contains VRCPlayer & Nameplate Container)
+            _gameObject = GameObject.Instantiate(nameplate, nameplate.transform.parent);
             _gameObject.name = "FewTagsPlate";
-            _gameObject2.name = "FewTagsPlate2";
-            _gameObject3.name = "FewTagsPlate3";
-            _gameObject4.name = "FewTagsPlate4";
-            _gameObject5.name = "FewTagsPlateBigText";
+            Text = _gameObject.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
             _rectTransforms = _gameObject.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlate").ToArray();
-            _rectTransforms2 = _gameObject2.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlate2").ToArray();
-            _rectTransforms3 = _gameObject3.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlate3").ToArray();
-            _rectTransforms4 = _gameObject4.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlate4").ToArray();
-            _rectTransforms5 = _gameObject5.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlateBigText").ToArray();
             for (int i = 0; i < _rectTransforms.Length; i++)
             {
                 try
                 {
-                    GameObject.DestroyImmediate(_rectTransforms[i].gameObject);
-                    GameObject.DestroyImmediate(_rectTransforms2[i].gameObject);
-                    GameObject.DestroyImmediate(_rectTransforms3[i].gameObject);
-                    GameObject.DestroyImmediate(_rectTransforms4[i].gameObject);
-                    GameObject.DestroyImmediate(_rectTransforms5[i].gameObject);
+                    Object.DestroyImmediate(_rectTransforms[i].gameObject);
                 }
                 catch { }
             }
-            _gameObject.SetActive(true);
-            _gameObject2.SetActive(true);
-            _gameObject3.SetActive(true);
-            _gameObject4.SetActive(true);
-            _gameObject5.SetActive(true);
             _gameObject.transform.localPosition = new Vector3(0, Main.Position, 0);
-            _gameObject2.transform.localPosition = new Vector3(0, Main.Position2, 0);
-            _gameObject3.transform.localPosition = new Vector3(0, Main.Position3, 0);
-            _gameObject4.transform.localPosition = new Vector3(0, Main.PositionMalicious, 0);
-            _gameObject5.transform.localPosition = new Vector3(0, Main.PositionBigText, 0);
-            _gameObject5.GetComponent<ImageThreeSlice>().color = new Color(1, 1, 1, 0f);
-            _gameObject5.GetComponentInChildren<TMPro.TextMeshProUGUI>().color = new Color(1, 1, 1, 0.45f);
-            _gameObject5.GetComponentInChildren<TMPro.TextMeshProUGUI>().outlineColor = new Color(1, 1, 1, 1f);
-            Text = _gameObject.transform.Find("Trust Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
-            Text2 = _gameObject2.transform.Find("Trust Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
-            Text3 = _gameObject3.transform.Find("Trust Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
-            Text4 = _gameObject4.transform.Find("Trust Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
-            Text5 = _gameObject5.transform.Find("Trust Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
+            _gameObject.SetActive(true);
             Text.text = "";
+
+            //Plate 2
+            _gameObject2 = GameObject.Instantiate(nameplate, nameplate.transform.parent);
+            _gameObject2.name = "FewTagsPlate2";
+            Text2 = _gameObject2.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
+            _rectTransforms2 = _gameObject2.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlate2").ToArray();
+            for (int i = 0; i < _rectTransforms2.Length; i++)
+            {
+                try
+                {
+                    Object.DestroyImmediate(_rectTransforms2[i].gameObject);
+                }
+                catch { }
+            }
+            _gameObject2.transform.localPosition = new Vector3(0, Main.Position2, 0);
+            _gameObject2.SetActive(true);
             Text2.text = "";
+
+            //Plate3
+            _gameObject3 = GameObject.Instantiate(nameplate, nameplate.transform.parent);
+            _gameObject3.name = "FewTagsPlate3";
+            Text3 = _gameObject3.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
+            _rectTransforms3 = _gameObject3.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlate3").ToArray();
+            for (int i = 0; i < _rectTransforms3.Length; i++)
+            {
+                try
+                {
+                    Object.DestroyImmediate(_rectTransforms3[i].gameObject);
+                }
+                catch { }
+            }
+            _gameObject3.transform.localPosition = new Vector3(0, Main.Position3, 0);
+            _gameObject3.SetActive(true);
             Text3.text = "";
+
+            //Plate4
+            _gameObject4 = GameObject.Instantiate(nameplate, nameplate.transform.parent);
+            _gameObject4.name = "FewTags";
+            Text4 = _gameObject4.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
+            _rectTransforms4 = _gameObject4.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTags").ToArray();
+            for (int i = 0; i < _rectTransforms4.Length; i++)
+            {
+                try
+                {
+                    Object.DestroyImmediate(_rectTransforms4[i].gameObject);
+                }
+                catch { }
+            }
+            _gameObject4.transform.localPosition = new Vector3(0, Main.PositionMalicious, 0);
+            _gameObject4.SetActive(true);
             Text4.text = "";
+
+            //BigPlate
+            _gameObject5 = GameObject.Instantiate(nameplate, nameplate.transform.parent);
+            _gameObject5.name = "FewTagsBigPlate";
+            Text5 = _gameObject5.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
+            _rectTransforms5 = _gameObject5.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsBigPlate").ToArray();
+            for (int i = 0; i < _rectTransforms5.Length; i++)
+            {
+                try
+                {
+                    Object.DestroyImmediate(_rectTransforms5[i].gameObject);
+                }
+                catch { }
+            }
+            _gameObject5.transform.localPosition = new Vector3(0, Main.PositionBigText, 0);
+            _gameObject5.transform.GetComponent<MaskableGraphicPublicSp_sObBoShUISiShBoyOUnique>().color = new Color(1, 1, 1, 0f);
+            _gameObject5.SetActive(true);
             Text5.text = "";
+
+            GameObject ChatBubble = Chat.gameObject.GetComponentsInChildren<MonoBehaviourPublic95VoUnique>().First(x => x.field_Public_MonoBehaviour1PublicOb_pObGa_pStTeObBoStUnique_0.prop_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_0.field_Private_APIUser_0.id == player.field_Private_APIUser_0.id).transform.Find("ChatBubble/Canvas").gameObject;
+            ChatBubble.transform.gameObject.GetComponent<MaskableGraphicPublicSp_sObBoShUISiShBoyOUnique>().material.color = new Color(1, 1, 1, 0.375f);
         }
     }
 }
