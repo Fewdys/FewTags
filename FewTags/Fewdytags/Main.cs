@@ -13,8 +13,6 @@ using VRC;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib.XrefScans;
 
-//Thanks To Edward7 For Helping Me Redo This
-
 namespace FewTags
 {
     public class Main : MelonMod

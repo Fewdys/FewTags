@@ -29,7 +29,7 @@ namespace FewTags
         private RectTransform[] _rectTransforms { get; set; }
 
         ~Plate() { _rectTransforms = null; _gameObject = null; }
-        public Plate(VRC.Player player/*, float meow*/)
+        public Plate(VRC.Player player)
         {
             //Main Plate
             _gameObject = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
