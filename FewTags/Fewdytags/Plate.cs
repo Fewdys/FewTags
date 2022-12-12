@@ -120,7 +120,7 @@ namespace FewTags
             Text5.text = "";
 
             GameObject ChatBubble = Chat.gameObject.GetComponentsInChildren<MonoBehaviourPublic95VoUnique>().First(x => x.field_Public_MonoBehaviour1PublicOb_pObGa_pStTeObBoStUnique_0.prop_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_0.field_Private_APIUser_0.id == player.field_Private_APIUser_0.id).transform.Find("ChatBubble/Canvas").gameObject;
-            ChatBubble.transform.gameObject.GetComponent<MaskableGraphicPublicSp_sObBoShUISiShBoyOUnique>().material.color = new Color(1, 1, 1, 0.375f);
+            ChatBubble.transform.gameObject.GetComponent<MaskableGraphicPublicSp_sObBoShUISiShBoyOUnique>().material.color = new Color(1, 1, 1, 0.29f);
         }
     }
 }
