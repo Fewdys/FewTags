@@ -6,4 +6,4 @@ Avatar/World Creators, Known Crashers, Known Ripper/Reuploaders, VRCMG Members, 
 # Notes
 If You Want A Tag Removed/Changed or Added Feel Free To Join The Discord.
 
-[Discord Link](discord.gg/EN4RrZR)
+[Discord Link](https://discord.gg/EN4RrZR)
