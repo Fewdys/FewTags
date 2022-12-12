@@ -20,7 +20,7 @@ using MelonLoader;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("ba462d85-23e6-488e-98f7-c5355cdd9c64")]
-[assembly: MelonInfo(typeof(FewTags.Main), "FewTags", "1.0.3", "Fewdy")]
+[assembly: MelonInfo(typeof(FewTags.Main), "FewTags", "1.0.4", "Fewdy")]
 [assembly: MelonGame("VRChat", "VRChat")]
 [assembly: MelonColor(System.ConsoleColor.DarkRed)]
 // Version information for an assembly consists of the following four values:
@@ -33,5 +33,5 @@ using MelonLoader;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.3.0")]
-[assembly: AssemblyFileVersion("1.0.3.0")]
+[assembly: AssemblyVersion("1.0.4.0")]
+[assembly: AssemblyFileVersion("1.0.4.0")]
