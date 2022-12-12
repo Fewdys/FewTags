@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MelonLoader;
 using System.Net;
+using UnityEngine;
 using Newtonsoft.Json;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -45,53 +46,49 @@ namespace FewTags
             AbyssClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "AbyssLoader");
             ErrorClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "ErrorClient");
             MelonLogger.Msg(ConsoleColor.Green, "Started FewTags");
-
-
-            using (WebClient wc = new WebClient())
-            {
-                s_rawTags = wc.DownloadString("https://raw.githubusercontent.com/Fewdys/tags/main/FewTagsv2.json");
-                s_tags = JsonConvert.DeserializeObject<Json.Tags>(s_rawTags);
-            }
+            MelonLogger.Msg(ConsoleColor.DarkCyan, "To ReFetch Tags Press L + F (World Rejoin Required)");
             NativeHook();
+            UpdateTags();
+            MelonLogger.Msg(ConsoleColor.Green, "Finished Fetching Tags (This Message Doesn't Appear When Tags Are ReFetched");
 
             //Checks For Other Mods (Positions For A Fixed ProPlates and Snaxy Aren't Updated - Abyss Positions Might Not Be Updated Now Due To It Being C++)
 
             //If Snaxy, ProPlates, Abyss and Astray are Loaded
             if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded)
             {
-                PositionMalicious = -143f;
-                Position = -171f;
-                Position2 = -199f;
-                Position3 = -227f;
-                PositionBigText = -283f;
+                PositionMalicious = -145f;
+                Position = -173f;
+                Position2 = -201f;
+                Position3 = -229f;
+                PositionBigText = -285f;
 
             }
             //If ProPlates and Abyss are Loaded
             else if (!FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
-                PositionMalicious = -114.1f;
-                Position = -142.1f;
-                Position2 = -170.1f;
-                Position3 = -198.1f;
-                PositionBigText = -254.1f;
+                PositionMalicious = -116.1f;
+                Position = -144.1f;
+                Position2 = -172.1f;
+                Position3 = -200.1f;
+                PositionBigText = -256.1f;
             }
             //If Snaxy and Abyss are Loaded
             else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
-                PositionMalicious = -114.1f;
-                Position = -142.1f;
-                Position2 = -170.1f;
-                Position3 = -198.1f;
-                PositionBigText = -254.1f;
+                PositionMalicious = -116.1f;
+                Position = -144.1f;
+                Position2 = -172.1f;
+                Position3 = -200.1f;
+                PositionBigText = -256.1f;
             }
             //If Snaxy and ProPlates are Loaded
             else if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
-                PositionMalicious = -114.1f;
-                Position = -142.1f;
-                Position2 = -170.1f;
-                Position3 = -198.1f;
-                PositionBigText = -254.1f;
+                PositionMalicious = -116.1f;
+                Position = -144.1f;
+                Position2 = -172.1f;
+                Position3 = -200.1f;
+                PositionBigText = -256.1f;
             }
             //If Nothing Is Loaded
             else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
@@ -105,32 +102,38 @@ namespace FewTags
             //If Abyss Is Loaded
             else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
-                PositionMalicious = -114.1f;
-                Position = -142.1f;
-                Position2 = -170.1f;
-                Position3 = -198.1f;
-                PositionBigText = -254.1f;
+                PositionMalicious = -116.1f;
+                Position = -144.1f;
+                Position2 = -172.1f;
+                Position3 = -200.1f;
+                PositionBigText = -256.1f;
             }
             //If ProPlates Is Loaded
             else if (FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
-                PositionMalicious = -87.75f;
-                Position = -115.75f;
-                Position2 = -143.75f;
-                Position3 = -171.75f;
-                PositionBigText = -227.75f;
+                PositionMalicious = -89.95f;
+                Position = -117.95f;
+                Position2 = -145.95f;
+                Position3 = -173.95f;
+                PositionBigText = -229.95f;
             }
             //If Snaxy Is Loaded
             else if (FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.ProPlatesLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
-                PositionMalicious = -90f;
-                Position = -118f;
-                Position2 = -146f;
-                Position3 = -174f;
-                PositionBigText = -230f;
+                PositionMalicious = -92f;
+                Position = -120f;
+                Position2 = -148f;
+                Position3 = -176f;
+                PositionBigText = -232f;
             }
         }
-
+        public override void OnUpdate()
+        {
+           if (Input.GetKeyDown(KeyCode.F) & Input.GetKey(KeyCode.L))
+            {
+                UpdateTags();
+            }
+        }
         private unsafe void NativeHook()
         {
             var methodInfos = typeof(MonoBehaviourPrivateAc1AcOb2AcInStHa2Unique).GetMethods().First(x => x.Name == "Method_Public_Void_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_0"); //MonoBehaviourPrivateAc1AcOb2AcInStHa2Unique - NetworkManager (Contains NetworkManager lol) //Method_Public_Void_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_0 - Join Method - Often Changes (Can Get By Hooking NetworkManager)
@@ -140,7 +143,16 @@ namespace FewTags
             s_userJoined = Marshal.GetDelegateForFunctionPointer<userJoined>(methodPointer);
         }
 
+        void UpdateTags()
+        {
 
+            using (WebClient wc = new WebClient())
+            {
+                s_rawTags = wc.DownloadString("https://raw.githubusercontent.com/Fewdys/tags/main/FewTagsv2.json");
+                s_tags = JsonConvert.DeserializeObject<Json.Tags>(s_rawTags);
+            }
+            MelonLogger.Msg(ConsoleColor.Yellow, "Fetching Tags (If L + F Was Pressed This Could Potentially Cause Some Lag)");
+        }
 
         private static void OnJoin(IntPtr _instance, IntPtr _user, IntPtr _methodInfo)
         {
