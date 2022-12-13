@@ -13,6 +13,8 @@ using VRC;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib.XrefScans;
 
+//This Version Is Used For MelonLoader With Deob Maps
+
 namespace FewTags
 {
     public class Main : MelonMod
