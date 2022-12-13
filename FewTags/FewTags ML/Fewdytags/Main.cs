@@ -183,7 +183,12 @@ namespace FewTags
                         s_plate.Text.enabled = false;
                         s_plate.Text.gameObject.SetActive(false);
                         s_plate.Text.gameObject.transform.parent.gameObject.SetActive(false);
-
+                        s_plate.Text2.enabled = false;
+                        s_plate.Text2.gameObject.SetActive(false);
+                        s_plate.Text2.gameObject.transform.parent.gameObject.SetActive(false);
+                        s_plate.Text3.enabled = false;
+                        s_plate.Text3.gameObject.SetActive(false);
+                        s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(false);
                     }
                     if (s_tagsArr[i].TextActive)
                     {
@@ -221,19 +226,7 @@ namespace FewTags
                         s_plate.Text5.gameObject.SetActive(true);
                         s_plate.Text5.gameObject.transform.parent.gameObject.SetActive(true);
                     }
-                    else if (!s_tagsArr[i].Text2Active & !s_tagsArr[i].Text3Active & !s_tagsArr[i].BigTextActive)
-                    {
-                        s_plate.Text2.enabled = false;
-                        s_plate.Text2.gameObject.SetActive(false);
-                        s_plate.Text2.gameObject.transform.parent.gameObject.SetActive(false);
-                        s_plate.Text3.enabled = false;
-                        s_plate.Text3.gameObject.SetActive(false);
-                        s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(false);
-                        s_plate.Text5.enabled = false;
-                        s_plate.Text5.gameObject.SetActive(false);
-                        s_plate.Text5.gameObject.transform.parent.gameObject.SetActive(false);
-                    }
-                    else if (!s_tagsArr[i].Text2Active & !s_tagsArr[i].Text3Active)
+                    if (!s_tagsArr[i].Text2Active)
                     {
                         s_plate.Text2.enabled = false;
                         s_plate.Text2.gameObject.SetActive(false);
@@ -242,23 +235,14 @@ namespace FewTags
                         s_plate.Text3.gameObject.SetActive(false);
                         s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(false);
                     }
-                    else if (!s_tagsArr[i].Text3Active)
+                    if (!s_tagsArr[i].Text3Active)
                     {
-                        s_plate.Text3.text += $"{s_tagsArr[i].PlateText3}";
                         s_plate.Text3.enabled = false;
                         s_plate.Text3.gameObject.SetActive(false);
                         s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(false);
                     }
-                    else if (!s_tagsArr[i].Text2Active)
+                    if (!s_tagsArr[i].BigTextActive)
                     {
-                        s_plate.Text2.text += $"{s_tagsArr[i].PlateText2}";
-                        s_plate.Text2.enabled = false;
-                        s_plate.Text2.gameObject.SetActive(false);
-                        s_plate.Text2.gameObject.transform.parent.gameObject.SetActive(false);
-                    }
-                    else if (!s_tagsArr[i].BigTextActive)
-                    {
-                        s_plate.Text5.text += $"{s_stringInstance}{s_tagsArr[i].PlateBigText}";
                         s_plate.Text5.enabled = false;
                         s_plate.Text5.gameObject.SetActive(false);
                         s_plate.Text5.gameObject.transform.parent.gameObject.SetActive(false);
