@@ -396,7 +396,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\VRChat" /Y /I</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\VRChat" /Y /I</PostBuildEvent>
   </PropertyGroup>
 </Project>
