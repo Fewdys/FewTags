@@ -27,7 +27,7 @@ namespace FewTags
         public static bool ProPlatesLoaded { get; private set; }
         public static bool AbyssClientLoaded { get; private set; }
         public static bool AstrayLoaded { get; private set; }
-        public static bool ErrorClientLoaded { get; private set; }
+        public static bool NameplateStatsLoaded { get; private set; }
         internal static float Position { get; set; }
         internal static float Position2 { get; set; }
         internal static float Position3 { get; set; }
@@ -47,7 +47,7 @@ namespace FewTags
             SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV2");
             ProPlatesLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "ProPlates");
             AbyssClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "AbyssLoader");
-            ErrorClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "ErrorClient");
+            NameplateStatsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "NameplateStats");
             MelonLogger.Msg(ConsoleColor.Green, "Started FewTags");
             MelonLogger.Msg(ConsoleColor.DarkCyan, "To ReFetch Tags Press L + F (World Rejoin Required)");
             NativeHook();
@@ -94,13 +94,22 @@ namespace FewTags
                 PositionBigText = -256.1f;
             }
             //If Nothing Is Loaded
-            else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
+            else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded & !FewTags.Main.NameplateStatsLoaded)
             {
                 PositionMalicious = -70.95f;
                 Position = -97.95f;
                 Position2 = -124.95f;
                 Position3 = -152.95f;
                 PositionBigText = -218.95f;
+            }
+            //If NameplateStats is Loaded
+            else if (FewTags.Main.NameplateStatsLoaded)
+            {
+                PositionMalicious = -98.25f;
+                Position = -126.25f;
+                Position2 = -154.25f;
+                Position3 = -182.25f;
+                PositionBigText = -248.45f;
             }
             //If Abyss Is Loaded
             else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
