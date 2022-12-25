@@ -146,13 +146,35 @@ namespace FewTags
                 UpdateTags();
             }
         }
-        private unsafe void NativeHook()
+
+        /*private unsafe void NativeHook()
         {
-            var methodInfos = typeof(MonoBehaviourPrivateAc1AcOb2AcInStHa2Unique).GetMethods().First(x => x.Name == "Method_Public_Void_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_0"); //MonoBehaviourPrivateAc1AcOb2AcInStHa2Unique - NetworkManager (Contains NetworkManager lol) //Method_Public_Void_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_0 - Join Method - Often Changes (Can Get By Hooking NetworkManager)
+            var methodInfos = typeof(MonoBehaviourPrivateAc1AcOb2AcInStHa2Unique).GetMethods().First(x => x.Name == "Method_Public_Void_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_1"); //MonoBehaviourPrivateAc1AcOb2AcInStHa2Unique - NetworkManager (Contains NetworkManager lol) //Method_Public_Void_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_0 - Join Method - Often Changes (Can Get By Hooking NetworkManager)
 
             var methodPointer = *(IntPtr*)(IntPtr)UnhollowerBaseLib.UnhollowerUtils.GetIl2CppMethodInfoPointerFieldForGeneratedMethod(methodInfos).GetValue(null);
             MelonUtils.NativeHookAttach((IntPtr)(&methodPointer), typeof(FewTags.Main).GetMethod(nameof(OnJoin), BindingFlags.Static | BindingFlags.NonPublic)!.MethodHandle.GetFunctionPointer());
             s_userJoined = Marshal.GetDelegateForFunctionPointer<userJoined>(methodPointer);
+        }*/
+
+        private unsafe void NativeHook()
+        {
+            var methodInfos = typeof(MonoBehaviourPrivateAc1AcOb2AcInStHa2Unique).GetMethods().Where(x => x.Name.StartsWith("Method_Public_Void_MonoBehaviourPublicAPOb_v_pObBo_UBoVRObUnique_")).ToArray();
+
+            for (int i = 0; i < methodInfos.Length; i++)
+            {
+                var mt = UnhollowerRuntimeLib.XrefScans.XrefScanner.XrefScan(methodInfos[i]).ToArray();
+                for (int j = 0; j < mt.Length; j++)
+                {
+                    if (mt[j].Type != UnhollowerRuntimeLib.XrefScans.XrefType.Global) continue;
+
+                    if (mt[j].ReadAsObject().ToString().Contains("OnPlayerJoin"))
+                    {
+                        var methodPointer = *(IntPtr*)(IntPtr)UnhollowerBaseLib.UnhollowerUtils.GetIl2CppMethodInfoPointerFieldForGeneratedMethod(methodInfos[i]).GetValue(null);
+                        MelonUtils.NativeHookAttach((IntPtr)(&methodPointer), typeof(FewTags.Main).GetMethod(nameof(OnJoin), BindingFlags.Static | BindingFlags.NonPublic)!.MethodHandle.GetFunctionPointer());
+                        s_userJoined = Marshal.GetDelegateForFunctionPointer<userJoined>(methodPointer);
+                    }
+                }
+            }
         }
 
         void UpdateTags()
