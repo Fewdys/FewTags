@@ -46,6 +46,7 @@ namespace FewTags
             }
             _gameObject.transform.localPosition = new Vector3(0, Main.Position, 0);
             _gameObject.SetActive(true);
+            //Text.isOverlay = false;
             Text.text = "";
 
             //Plate 2
@@ -63,6 +64,7 @@ namespace FewTags
             }
             _gameObject2.transform.localPosition = new Vector3(0, Main.Position2, 0);
             _gameObject2.SetActive(true);
+            //Text2.isOverlay = false;
             Text2.text = "";
 
             //Plate3
@@ -80,6 +82,7 @@ namespace FewTags
             }
             _gameObject3.transform.localPosition = new Vector3(0, Main.Position3, 0);
             _gameObject3.SetActive(true);
+            //Text3.isOverlay = false;
             Text3.text = "";
 
             //Plate4
@@ -97,6 +100,7 @@ namespace FewTags
             }
             _gameObject4.transform.localPosition = new Vector3(0, Main.PositionMalicious, 0);
             _gameObject4.SetActive(true);
+            //Text4.isOverlay = false;
             Text4.text = "";
 
             //BigPlate
@@ -115,10 +119,11 @@ namespace FewTags
             _gameObject5.transform.localPosition = new Vector3(0, Main.PositionBigText, 0);
             _gameObject5.transform.GetComponent<ImageThreeSlice>().color = new Color(1, 1, 1, 0f);
             _gameObject5.SetActive(true);
+            //Text5.isOverlay = true;
             Text5.text = "";
 
-            var Chat = Object.FindObjectOfType<MonoBehaviourPublic95VoUnique>().transform.gameObject;
-            GameObject ChatBubble = Chat.GetComponent<MonoBehaviourPublic95VoUnique>().transform.FindChild("ChatBubble/Canvas").gameObject;
+            var Chat = Object.FindObjectOfType<VRC.NameplateManager>().transform.gameObject;
+            GameObject ChatBubble = Chat.GetComponent<VRC.NameplateManager>().transform.FindChild("ChatBubble/Canvas").gameObject;
             ChatBubble.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
         }
     }
