@@ -57,7 +57,7 @@ namespace FewTags
             //Checks For Other Mods (Positions For A Fixed ProPlates and Snaxy Aren't Updated - Abyss Positions Might Not Be Updated Now Due To It Being C++)
 
             //If Snaxy, ProPlates, Abyss and Astray are Loaded
-            if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded)
+            /*if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded)
             {
                 PositionMalicious = -145f;
                 Position = -173f;
@@ -92,7 +92,7 @@ namespace FewTags
                 Position2 = -172.1f;
                 Position3 = -200.1f;
                 PositionBigText = -256.1f;
-            }
+            }*/
             //If Nothing Is Loaded
             else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded & !FewTags.Main.NameplateStatsLoaded)
             {
@@ -112,7 +112,7 @@ namespace FewTags
                 PositionBigText = -248.45f;
             }
             //If Abyss Is Loaded
-            else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
+            /*else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -116.1f;
                 Position = -144.1f;
@@ -137,7 +137,7 @@ namespace FewTags
                 Position2 = -148f;
                 Position3 = -176f;
                 PositionBigText = -232f;
-            }
+            }*/
         }
         public override void OnUpdate()
         {

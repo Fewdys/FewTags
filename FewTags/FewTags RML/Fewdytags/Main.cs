@@ -28,6 +28,7 @@ namespace FewTags
         public static bool AbyssClientLoaded { get; private set; }
         public static bool AstrayLoaded { get; private set; }
         public static bool NameplateStatsLoaded { get; private set; }
+        public static bool VanixClientLoaded { get; private set; }
         internal static float Position { get; set; }
         internal static float Position2 { get; set; }
         internal static float Position3 { get; set; }
@@ -42,12 +43,13 @@ namespace FewTags
 
         public override void OnApplicationStart()
         {
-            SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV3"); //For When He Updates It To Be V3
-            SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV3.dll"); //This Is Here Bc Who Fkn Knows With Null - He Likes To Meme
-            SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV2");
-            ProPlatesLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "ProPlates");
-            AbyssClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "AbyssLoader");
+            //SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV3"); //For When He Updates It To Be V3
+            //SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV3.dll"); //This Is Here Bc Who Fkn Knows With Null - He Likes To Meme
+            //SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV2");
+            //ProPlatesLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "ProPlates");
+            //AbyssClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "AbyssLoader");
             NameplateStatsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "NameplateStats");
+            VanixClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "Vanix Client");
             MelonLogger.Msg(ConsoleColor.Green, "Started FewTags");
             MelonLogger.Msg(ConsoleColor.DarkCyan, "To ReFetch Tags Press L + F (World Rejoin Required)");
             NativeHook();
@@ -57,7 +59,7 @@ namespace FewTags
             //Checks For Other Mods (Positions For A Fixed ProPlates and Snaxy Aren't Updated - Abyss Positions Might Not Be Updated Now Due To It Being C++)
 
             //If Snaxy, ProPlates, Abyss and Astray are Loaded
-            if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded)
+            /*if (FewTags.Main.SnaxyTagsLoaded & FewTags.Main.ProPlatesLoaded & FewTags.Main.AbyssClientLoaded)
             {
                 PositionMalicious = -145f;
                 Position = -173f;
@@ -92,15 +94,23 @@ namespace FewTags
                 Position2 = -172.1f;
                 Position3 = -200.1f;
                 PositionBigText = -256.1f;
-            }
+            }*/
             //If Nothing Is Loaded
-            else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded & !FewTags.Main.NameplateStatsLoaded)
+            if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.VanixClientLoaded & !FewTags.Main.NameplateStatsLoaded)
             {
                 PositionMalicious = -70.95f;
                 Position = -97.95f;
                 Position2 = -124.95f;
                 Position3 = -152.95f;
                 PositionBigText = -218.95f;
+            }
+            if (FewTags.Main.VanixClientLoaded)
+            {
+                PositionMalicious = -70.95f;
+                Position = -97.95f;
+                Position2 = -124.95f;
+                Position3 = -152.95f;
+                PositionBigText = 102f;
             }
             //If NameplateStats is Loaded
             else if (FewTags.Main.NameplateStatsLoaded)
@@ -112,7 +122,7 @@ namespace FewTags
                 PositionBigText = -248.45f;
             }
             //If Abyss Is Loaded
-            else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
+            /*else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
             {
                 PositionMalicious = -116.1f;
                 Position = -144.1f;
@@ -137,7 +147,7 @@ namespace FewTags
                 Position2 = -148f;
                 Position3 = -176f;
                 PositionBigText = -232f;
-            }
+            }*/
         }
         public override void OnUpdate()
         {
