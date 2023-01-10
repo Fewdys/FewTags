@@ -119,7 +119,7 @@ namespace FewTags
                 Position = -126.25f;
                 Position2 = -154.25f;
                 Position3 = -182.25f;
-                PositionBigText = -248.45f;
+                PositionBigText = 82f;
             }
             //If Abyss Is Loaded
             /*else if (!FewTags.Main.ProPlatesLoaded & !FewTags.Main.SnaxyTagsLoaded & FewTags.Main.AbyssClientLoaded & !FewTags.Main.AstrayLoaded)
