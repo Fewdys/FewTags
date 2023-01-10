@@ -121,10 +121,6 @@ namespace FewTags
             _gameObject5.SetActive(true);
             //Text5.isOverlay = true;
             Text5.text = "";
-
-            var Chat = Object.FindObjectOfType<VRC.NameplateManager>().transform.gameObject;
-            GameObject ChatBubble = Chat.GetComponent<VRC.NameplateManager>().transform.FindChild("ChatBubble/Canvas").gameObject;
-            ChatBubble.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
         }
     }
 }

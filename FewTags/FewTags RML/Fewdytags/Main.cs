@@ -12,6 +12,7 @@ using VRC.SDKBase;
 using VRC;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib.XrefScans;
+using UnityEngine.UI;
 
 //This Version Is Used For MelonLoader With Deob Maps
 
@@ -155,6 +156,64 @@ namespace FewTags
             {
                 UpdateTags();
             }
+
+            try
+            {
+
+                foreach (Player vrcPlayer in PlayerManager.field_Private_Static_PlayerManager_0.field_Private_List_1_Player_0)
+                {
+                    if (vrcPlayer != null)
+                    {
+                        vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
+                        vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
+                        if (vrcPlayer.field_Private_APIUser_0.isFriend == true)
+                        {
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.cyan;
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.cyan;
+                        }
+                        else if (vrcPlayer.IsMe() == true)
+                        {
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
+                        }
+                        else if (vrcPlayer.field_Private_APIUser_0.tags.Contains("system_trust_legend"))
+                        {
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = new Color32(33, 255, 155, 255);
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = new Color32(33, 255, 155, 255);
+                        }
+
+                        else if (vrcPlayer.field_Private_APIUser_0.tags.Contains("system_probable_troll"))
+                        {
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.gray;
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.gray;
+                        }
+                        else if (vrcPlayer.field_Private_APIUser_0.tags.Contains("system_trust_veteran"))
+                        {
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.magenta;
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.magenta;
+                        }
+
+                        else if (vrcPlayer.field_Private_APIUser_0.tags.Contains("system_trust_trusted"))
+                        {
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = new Color32(255, 159, 33, 255);
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = new Color32(255, 159, 33, 255);
+                        }
+
+                        else if (vrcPlayer.field_Private_APIUser_0.tags.Contains("system_trust_known"))
+                        {
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.green;
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.green;
+                        }
+
+                        else if (vrcPlayer.field_Private_APIUser_0.tags.Contains("system_avatar_access"))
+                        {
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.blue;
+                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.blue;
+                        }
+                    }
+                }
+            }
+            catch { }
         }
         private unsafe void NativeHook()
         {
