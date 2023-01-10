@@ -5,5 +5,6 @@ Avatar/World Creators, Known Crashers, Known Ripper/Reuploaders, VRCMG Members, 
 
 # Notes
 If You Want A Tag Removed/Changed or Added Feel Free To Join The Discord.
+(The Role Needed Is In Channel React For Roles Torwards The Top Of The Discord)
 
 [Discord Link](https://discord.gg/EN4RrZR)
