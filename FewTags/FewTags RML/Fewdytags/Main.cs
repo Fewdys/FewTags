@@ -102,7 +102,7 @@ namespace FewTags
                 Position = -97.95f;
                 Position2 = -124.95f;
                 Position3 = -152.95f;
-                PositionBigText = -218.95f;
+                PositionBigText = 82f;
             }
             if (FewTags.Main.VanixClientLoaded)
             {
