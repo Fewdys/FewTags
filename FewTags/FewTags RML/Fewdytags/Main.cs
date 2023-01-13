@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 using MelonLoader;
 using System.Net;
 using UnityEngine;
@@ -60,7 +61,7 @@ namespace FewTags
                 Position = -97.95f;
                 Position2 = -124.95f;
                 Position3 = -152.95f;
-                PositionBigText = 82f;
+                PositionBigText = 172f;
             }
             //If Vanix Client Is Loaded
             if (FewTags.Main.VanixClientLoaded)
@@ -69,7 +70,7 @@ namespace FewTags
                 Position = -97.95f;
                 Position2 = -124.95f;
                 Position3 = -152.95f;
-                PositionBigText = 102f;
+                PositionBigText = 192f;
             }
             //If NameplateStats is Loaded
             else if (FewTags.Main.NameplateStatsLoaded)
@@ -78,7 +79,7 @@ namespace FewTags
                 Position = -126.25f;
                 Position2 = -154.25f;
                 Position3 = -182.25f;
-                PositionBigText = 82f;
+                PositionBigText = 172f;
             }
         }
         public override void OnUpdate()
@@ -87,15 +88,6 @@ namespace FewTags
             {
                 UpdateTags();
             }
-        }
-
-        public override void OnLateUpdate()
-        {
-            try
-            {
-                UpdateChatBox();
-            }
-            catch { }
         }
 
         private unsafe void NativeHook()
@@ -226,44 +218,6 @@ namespace FewTags
             }
             catch { }
         }
-
-        //Probably Could Have Used A Switch Statement, But ¯\_(ツ)_/¯
-        static void UpdateChatBox()
-        {
-            foreach (Player vrcPlayer in PlayerManager.field_Private_Static_PlayerManager_0.field_Private_List_1_Player_0)
-            {
-                try
-                {
-                    if (vrcPlayer == null) return;
-                    if (vrcPlayer != null)
-                    {
-                        if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color != new Color(0, 0, 0, 0.29f))
-                        {
-                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
-                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
-                        }
-                        if (vrcPlayer.field_Private_APIUser_0.isFriend == true)
-                        {
-                            if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.cyan) return;
-                            if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.cyan) return;
-                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.cyan;
-                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.cyan;
-                        }
-                        else if (vrcPlayer.IsMe() == true)
-                        {
-                            if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.red) return;
-                            if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.red) return;
-                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
-                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
-                        }
-                    }
-                }
-                catch { }
-            }
-        }
-
-            //This Is Legit Just A Copy Paste Of The UpdateChatBox(); But Is Used Specifically OnJoin Instead Of OnUpdate
-            //Doing This Is Stupid But I Don't Get Why It Wouldn't Update After Rejoining Otherwise (So We Just Gonna Go With This)
             static void UpdateChatBoxOnJoin(Player vrcPlayer)
             {
                 try
@@ -271,11 +225,8 @@ namespace FewTags
                     if (vrcPlayer == null) return;
                     if (vrcPlayer != null)
                     {
-                        if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color != new Color(0, 0, 0, 0.29f))
-                        {
                         vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
                         vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
-                        }
                         if (vrcPlayer.field_Private_APIUser_0.isFriend == true)
                         {
                             if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.cyan) return;
