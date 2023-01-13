@@ -39,8 +39,6 @@ namespace FewTags
 
         public override void OnApplicationStart()
         {
-            //SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV3"); //For When He Updates It To Be V3
-            //SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV3.dll"); //This Is Here Bc Who Fkn Knows With Null - He Likes To Meme
             //SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV2");
             //ProPlatesLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "ProPlates");
             //AbyssClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "AbyssLoader");
@@ -51,6 +49,7 @@ namespace FewTags
             NativeHook();
             UpdateTags();
             MelonLogger.Msg(ConsoleColor.Green, "Finished Fetching Tags (This Message Doesn't Appear When Tags Are ReFetched)");
+            MelonLogger.Msg(ConsoleColor.DarkCyan, "Nameplate ESP On/Off: RightShift + P");
 
             //Checks For Other Mods (Positions For A Fixed ProPlates and Snaxy Aren't Updated - Abyss Positions Might Not Be Updated Now Due To It Being C++)
 
@@ -61,7 +60,7 @@ namespace FewTags
                 Position = -97.95f;
                 Position2 = -124.95f;
                 Position3 = -152.95f;
-                PositionBigText = 172f;
+                PositionBigText = 182.25f;
             }
             //If Vanix Client Is Loaded
             if (FewTags.Main.VanixClientLoaded)
@@ -70,7 +69,7 @@ namespace FewTags
                 Position = -97.95f;
                 Position2 = -124.95f;
                 Position3 = -152.95f;
-                PositionBigText = 192f;
+                PositionBigText = 202f;
             }
             //If NameplateStats is Loaded
             else if (FewTags.Main.NameplateStatsLoaded)
@@ -79,7 +78,7 @@ namespace FewTags
                 Position = -126.25f;
                 Position2 = -154.25f;
                 Position3 = -182.25f;
-                PositionBigText = 172f;
+                PositionBigText = 182.25f;
             }
         }
         public override void OnUpdate()
@@ -87,6 +86,20 @@ namespace FewTags
             if (Input.GetKeyDown(KeyCode.F) & Input.GetKey(KeyCode.L))
             {
                 UpdateTags();
+            }
+            if (Input.GetKey(KeyCode.RightShift) & Input.GetKeyDown(KeyCode.P))
+            {
+                if (s_plate.Text.isOverlay == false)
+                {
+                    s_plate.Text.isOverlay = true;
+                    MelonLogger.Msg(ConsoleColor.Green, "Nameplate ESP On");
+                }
+
+                if (s_plate.Text.isOverlay == true)
+                {
+                    s_plate.Text.isOverlay = false;
+                    MelonLogger.Msg(ConsoleColor.Red, "Nameplate ESP Off");
+                }
             }
         }
 
@@ -227,23 +240,23 @@ namespace FewTags
                     {
                         vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
                         vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
-                        if (vrcPlayer.field_Private_APIUser_0.isFriend == true)
-                        {
-                            if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.cyan) return;
-                            if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.cyan) return;
-                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.cyan;
-                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.cyan;
-                        }
-                        else if (vrcPlayer.IsMe() == true)
-                        {
-                            if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.red) return;
-                            if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.red) return;
-                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
-                            vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
-                        }
+                    if (vrcPlayer.IsMe() == true)
+                    {
+                        if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.red) return;
+                        if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.red) return;
+                        vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
+                        vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
+                    }
+                    else if (vrcPlayer.field_Private_APIUser_0.isFriend == true)
+                    {
+                        if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.cyan) return;
+                        if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.cyan) return;
+                        vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.cyan;
+                        vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.cyan;
                     }
                 }
-                catch { }
             }
+            catch { }
         }
     }
+}
