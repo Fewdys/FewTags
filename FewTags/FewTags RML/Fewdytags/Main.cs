@@ -49,7 +49,8 @@ namespace FewTags
             NativeHook();
             UpdateTags();
             MelonLogger.Msg(ConsoleColor.Green, "Finished Fetching Tags (This Message Doesn't Appear When Tags Are ReFetched)");
-            MelonLogger.Msg(ConsoleColor.DarkCyan, "Nameplate ESP On/Off: RightShift + P");
+            MelonLogger.Msg(ConsoleColor.Green, "(Tagged Players) Nameplate ESP On: RightShift + O");
+            MelonLogger.Msg(ConsoleColor.Red, "(Tagged Players) Nameplate ESP Off: RightShift + P");
 
             //Checks For Other Mods (Positions For A Fixed ProPlates and Snaxy Aren't Updated - Abyss Positions Might Not Be Updated Now Due To It Being C++)
 
@@ -87,19 +88,42 @@ namespace FewTags
             {
                 UpdateTags();
             }
+        }
+
+        public override void OnLateUpdate()
+        {
+            if (Input.GetKey(KeyCode.RightShift) & Input.GetKeyDown(KeyCode.O))
+            {
+                try
+                {
+                    if (s_plate.Text.isOverlay == false)
+                    {
+                        s_plate.Text.isOverlay = true;
+                        s_plate.Text2.isOverlay = true;
+                        s_plate.Text3.isOverlay = true;
+                        s_plate.Text4.isOverlay = true;
+                        s_plate.Text5.isOverlay = true;
+                        MelonLogger.Msg(ConsoleColor.Green, "(Tagged Players) Nameplate ESP On");
+                    }
+                }
+                catch { }
+            }
+
             if (Input.GetKey(KeyCode.RightShift) & Input.GetKeyDown(KeyCode.P))
             {
-                if (s_plate.Text.isOverlay == false)
+                try
                 {
-                    s_plate.Text.isOverlay = true;
-                    MelonLogger.Msg(ConsoleColor.Green, "Nameplate ESP On");
+                    if (s_plate.Text.isOverlay == true)
+                    {
+                        s_plate.Text.isOverlay = false;
+                        s_plate.Text2.isOverlay = false;
+                        s_plate.Text3.isOverlay = false;
+                        s_plate.Text4.isOverlay = false;
+                        s_plate.Text5.isOverlay = false;
+                        MelonLogger.Msg(ConsoleColor.Red, "(Tagged Players) Nameplate ESP Off");
+                    }
                 }
-
-                if (s_plate.Text.isOverlay == true)
-                {
-                    s_plate.Text.isOverlay = false;
-                    MelonLogger.Msg(ConsoleColor.Red, "Nameplate ESP Off");
-                }
+                catch { }
             }
         }
 
