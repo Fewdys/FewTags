@@ -17,16 +17,17 @@ namespace FewTags
         public TMPro.TextMeshProUGUI Text3 { get; set; }
         public TMPro.TextMeshProUGUI Text2 { get; set; }
         public TMPro.TextMeshProUGUI Text { get; set; }
-        private GameObject _gameObject5 { get; set; }
-        private GameObject _gameObject4 { get; set; }
-        private GameObject _gameObject3 { get; set; }
-        private GameObject _gameObject2 { get; set; }
-        private GameObject _gameObject { get; set; }
+        public static GameObject _gameObject5 { get; set; }
+        public static GameObject _gameObject4 { get; set; }
+        public static GameObject _gameObject3 { get; set; }
+        public static GameObject _gameObject2 { get; set; }
+        public static GameObject _gameObject { get; set; }
         private RectTransform[] _rectTransforms5 { get; set; }
         private RectTransform[] _rectTransforms4 { get; set; }
         private RectTransform[] _rectTransforms3 { get; set; }
         private RectTransform[] _rectTransforms2 { get; set; }
         private RectTransform[] _rectTransforms { get; set; }
+        public bool overlay;
 
         ~Plate() { _rectTransforms = null; _gameObject = null; }
         public Plate(VRC.Player player)
@@ -46,7 +47,7 @@ namespace FewTags
             }
             _gameObject.transform.localPosition = new Vector3(0, Main.Position, 0);
             _gameObject.SetActive(true);
-            //Text.isOverlay = false;
+            //Text.isOverlay = overlay;
             Text.text = "";
 
             //Plate 2
@@ -64,7 +65,7 @@ namespace FewTags
             }
             _gameObject2.transform.localPosition = new Vector3(0, Main.Position2, 0);
             _gameObject2.SetActive(true);
-            //Text2.isOverlay = false;
+            //Text2.isOverlay = overlay;
             Text2.text = "";
 
             //Plate3
@@ -82,7 +83,7 @@ namespace FewTags
             }
             _gameObject3.transform.localPosition = new Vector3(0, Main.Position3, 0);
             _gameObject3.SetActive(true);
-            //Text3.isOverlay = false;
+            //Text3.isOverlay = overlay;
             Text3.text = "";
 
             //Plate4
@@ -100,7 +101,7 @@ namespace FewTags
             }
             _gameObject4.transform.localPosition = new Vector3(0, Main.PositionMalicious, 0);
             _gameObject4.SetActive(true);
-            //Text4.isOverlay = false;
+            //Text4.isOverlay = overlay;
             Text4.text = "";
 
             //BigPlate
@@ -119,7 +120,7 @@ namespace FewTags
             _gameObject5.transform.localPosition = new Vector3(0, Main.PositionBigText, 0);
             _gameObject5.transform.GetComponent<ImageThreeSlice>().color = new Color(1, 1, 1, 0f);
             _gameObject5.SetActive(true);
-            //Text5.isOverlay = true;
+            //Text5.isOverlay = overlay;
             Text5.text = "";
         }
     }

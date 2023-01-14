@@ -26,6 +26,7 @@ namespace FewTags
         public static bool IsFriendsWith(this APIUser apiUser) => APIUser.CurrentUser.friendIDs.Contains(apiUser.id);
         public static VRCPlayer GetLocalVRCPlayer() => VRCPlayer.field_Internal_Static_VRCPlayer_0;
         public static bool IsMe(this Player p) => p.name == GetLocalVRCPlayer().name;
+        public static bool CheckFriend(this Player vrcPlayer) => VRCPlayer.field_Internal_Static_VRCPlayer_0.prop_Player_0.field_Private_APIUser_0.friendIDs.Contains(vrcPlayer.field_Private_APIUser_0.id);
 
     }
 }

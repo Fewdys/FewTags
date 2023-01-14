@@ -14,6 +14,8 @@ using VRC;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib.XrefScans;
 using UnityEngine.UI;
+using VRC.Core;
+using static VRC.SDKBase.VRC_SpecialLayer;
 
 namespace FewTags
 {
@@ -33,6 +35,7 @@ namespace FewTags
         internal static float PositionMalicious { get; set; }
         internal static float PositionBigText { get; set; }
         private static string s_stringInstance { get; set; }
+        public static bool overlay;
 
         private delegate IntPtr userJoined(IntPtr _instance, IntPtr _user, IntPtr _methodinfo);
         private static userJoined s_userJoined;
@@ -45,15 +48,15 @@ namespace FewTags
             NameplateStatsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "NameplateStats");
             VanixClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "Vanix Client");
             MelonLogger.Msg(ConsoleColor.Green, "Started FewTags");
-            MelonLogger.Msg(ConsoleColor.DarkCyan, "To ReFetch Tags Press L + F (World Rejoin Required)");
+            MelonLogger.Msg(ConsoleColor.DarkCyan, "To ReFetch Tags Press L + F (Rejoin Required)");
             NativeHook();
             UpdateTags();
+            overlay = false;
             MelonLogger.Msg(ConsoleColor.Green, "Finished Fetching Tags (This Message Doesn't Appear When Tags Are ReFetched)");
-            MelonLogger.Msg(ConsoleColor.Green, "(Tagged Players) Nameplate ESP On: RightShift + O");
-            MelonLogger.Msg(ConsoleColor.Red, "(Tagged Players) Nameplate ESP Off: RightShift + P");
+            MelonLogger.Msg(ConsoleColor.Green, "(Tagged Players) Nameplate ESP On: RightShift + O (Requires Rejoin When Changed)");
+            MelonLogger.Msg(ConsoleColor.Red, "(Tagged Players) Nameplate ESP Off: RightShift + P (Requires Rejoin When Changed)");
 
             //Checks For Other Mods (Positions For A Fixed ProPlates and Snaxy Aren't Updated - Abyss Positions Might Not Be Updated Now Due To It Being C++)
-
             //If Nothing Is Loaded
             if (!FewTags.Main.SnaxyTagsLoaded & !FewTags.Main.AbyssClientLoaded & !FewTags.Main.VanixClientLoaded & !FewTags.Main.NameplateStatsLoaded)
             {
@@ -82,6 +85,7 @@ namespace FewTags
                 PositionBigText = 182.25f;
             }
         }
+
         public override void OnUpdate()
         {
             if (Input.GetKeyDown(KeyCode.F) & Input.GetKey(KeyCode.L))
@@ -96,13 +100,9 @@ namespace FewTags
             {
                 try
                 {
-                    if (s_plate.Text.isOverlay == false)
+                    if (s_plate.Text.isActiveAndEnabled)
                     {
-                        s_plate.Text.isOverlay = true;
-                        s_plate.Text2.isOverlay = true;
-                        s_plate.Text3.isOverlay = true;
-                        s_plate.Text4.isOverlay = true;
-                        s_plate.Text5.isOverlay = true;
+                        overlay = true;
                         MelonLogger.Msg(ConsoleColor.Green, "(Tagged Players) Nameplate ESP On");
                     }
                 }
@@ -113,13 +113,10 @@ namespace FewTags
             {
                 try
                 {
-                    if (s_plate.Text.isOverlay == true)
+                    if (s_plate.Text.isActiveAndEnabled)
                     {
+                        overlay = false;
                         s_plate.Text.isOverlay = false;
-                        s_plate.Text2.isOverlay = false;
-                        s_plate.Text3.isOverlay = false;
-                        s_plate.Text4.isOverlay = false;
-                        s_plate.Text5.isOverlay = false;
                         MelonLogger.Msg(ConsoleColor.Red, "(Tagged Players) Nameplate ESP Off");
                     }
                 }
@@ -163,16 +160,16 @@ namespace FewTags
         {
             s_userJoined(_instance, _user, _methodInfo);
             var vrcPlayer = UnhollowerSupport.Il2CppObjectPtrToIl2CppObject<VRC.Player>(_user);
-            UpdateChatBoxOnJoin(vrcPlayer);
+            UpdateMyChatBoxOnJoin(vrcPlayer);
             if (!s_rawTags.Contains(vrcPlayer.field_Private_APIUser_0.id)) return;
-            PlateHandler(vrcPlayer);
+            PlateHandler(vrcPlayer, overlay);
         }
 
         private static Plate s_plate { get; set; }
         private static Json.Tag[] s_tagsArr { get; set; }
 
 
-        private static void PlateHandler(VRC.Player vrcPlayer)
+        private static void PlateHandler(VRC.Player vrcPlayer, bool overlay)
         {
             try
             {
@@ -200,14 +197,17 @@ namespace FewTags
                         s_plate.Text.enabled = true;
                         s_plate.Text.gameObject.SetActive(true);
                         s_plate.Text.gameObject.transform.parent.gameObject.SetActive(true);
+                        overlay = s_plate.Text.isOverlay;
                     }
                     if (s_tagsArr[i].Malicious)
                     {
                         s_plate.Text4.text += $"<color=#ff0000>Malicious User</color>";
+                        overlay = s_plate.Text4.isOverlay;
                     }
                     if (!s_tagsArr[i].Malicious)
                     {
                         s_plate.Text4.text += $"<b><color=#ff0000>-</color> <color=#ff7f00>F</color><color=#ffff00>e</color><color=#80ff00>w</color><color=#00ff00>T</color><color=#00ff80>a</color><color=#00ffff>g</color><color=#0000ff>s</color> <color=#8b00ff>-</color><color=#ffffff></b>";
+                        overlay = s_plate.Text4.isOverlay;
                     }
                     if (s_tagsArr[i].Text2Active)
                     {
@@ -215,6 +215,7 @@ namespace FewTags
                         s_plate.Text2.enabled = true;
                         s_plate.Text2.gameObject.SetActive(true);
                         s_plate.Text2.gameObject.transform.parent.gameObject.SetActive(true);
+                        overlay = s_plate.Text2.isOverlay;
                     }
                     if (s_tagsArr[i].Text3Active)
                     {
@@ -222,6 +223,7 @@ namespace FewTags
                         s_plate.Text3.enabled = true;
                         s_plate.Text3.gameObject.SetActive(true);
                         s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(true);
+                        overlay = s_plate.Text3.isOverlay;
                     }
                     if (s_tagsArr[i].BigTextActive)
                     {
@@ -229,6 +231,7 @@ namespace FewTags
                         s_plate.Text5.enabled = true;
                         s_plate.Text5.gameObject.SetActive(true);
                         s_plate.Text5.gameObject.transform.parent.gameObject.SetActive(true);
+                        overlay = s_plate.Text5.isOverlay;
                     }
                     if (!s_tagsArr[i].Text2Active)
                     {
@@ -255,28 +258,31 @@ namespace FewTags
             }
             catch { }
         }
-            static void UpdateChatBoxOnJoin(Player vrcPlayer)
+
+        static void UpdateMyChatBoxOnJoin(Player vrcPlayer)
+        {
+            try
             {
-                try
+                if (vrcPlayer.field_Private_APIUser_0.isFriend)
                 {
-                    if (vrcPlayer == null) return;
-                    if (vrcPlayer != null)
+                    vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.cyan;
+                    vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
+                    vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.cyan;
+                    vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
+                }
+                else if (vrcPlayer.IsMe() == true)
+                {
+                    VRCPlayer.field_Internal_Static_VRCPlayer_0.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
+                    vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
+                    VRCPlayer.field_Internal_Static_VRCPlayer_0.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
+                    vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
+                }
+                else
+                {
+                    if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color != new Color(0, 0, 0, 0.29f) || vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color != new Color(0, 0, 0, 0.29f))
                     {
                         vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
                         vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas").gameObject.transform.gameObject.GetComponent<Graphic>().color = new Color(0, 0, 0, 0.29f);
-                    if (vrcPlayer.IsMe() == true)
-                    {
-                        if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.red) return;
-                        if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.red) return;
-                        vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
-                        vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
-                    }
-                    else if (vrcPlayer.field_Private_APIUser_0.isFriend == true)
-                    {
-                        if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.cyan) return;
-                        if (vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color == Color.cyan) return;
-                        vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubble/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.cyan;
-                        vrcPlayer._vrcplayer.field_Public_GameObject_0.gameObject.transform.FindChild("ChatBubbleMirror/Canvas/ChatText").gameObject.transform.gameObject.GetComponent<TMPro.TextMeshProUGUI>().color = Color.cyan;
                     }
                 }
             }
