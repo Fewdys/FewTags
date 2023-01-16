@@ -53,8 +53,8 @@ namespace FewTags
             UpdateTags();
             overlay = false;
             MelonLogger.Msg(ConsoleColor.Green, "Finished Fetching Tags (This Message Doesn't Appear When Tags Are ReFetched)");
-            MelonLogger.Msg(ConsoleColor.Green, "(Tagged Players) Nameplate ESP On: RightShift + O (Requires Rejoin When Changed)");
-            MelonLogger.Msg(ConsoleColor.Red, "(Tagged Players) Nameplate ESP Off: RightShift + P (Requires Rejoin When Changed)");
+            MelonLogger.Msg(ConsoleColor.Green, "Tagged Players - Nameplate ESP On: RightShift + O (Rejoin Required)");
+            MelonLogger.Msg(ConsoleColor.Red, "Tagged Players - Nameplate ESP Off: RightShift + P (Rejoin Required)");
 
             //Checks For Other Mods (Positions For A Fixed ProPlates and Snaxy Aren't Updated - Abyss Positions Might Not Be Updated Now Due To It Being C++)
             //If Nothing Is Loaded
@@ -103,6 +103,7 @@ namespace FewTags
                     if (s_plate.Text.isActiveAndEnabled)
                     {
                         overlay = true;
+                        s_plate.Text.isOverlay = true;
                         MelonLogger.Msg(ConsoleColor.Green, "(Tagged Players) Nameplate ESP On");
                     }
                 }
@@ -197,17 +198,17 @@ namespace FewTags
                         s_plate.Text.enabled = true;
                         s_plate.Text.gameObject.SetActive(true);
                         s_plate.Text.gameObject.transform.parent.gameObject.SetActive(true);
-                        overlay = s_plate.Text.isOverlay;
+                        s_plate.Text.isOverlay = overlay;
                     }
                     if (s_tagsArr[i].Malicious)
                     {
                         s_plate.Text4.text += $"<color=#ff0000>Malicious User</color>";
-                        overlay = s_plate.Text4.isOverlay;
+                        s_plate.Text4.isOverlay = overlay;
                     }
                     if (!s_tagsArr[i].Malicious)
                     {
                         s_plate.Text4.text += $"<b><color=#ff0000>-</color> <color=#ff7f00>F</color><color=#ffff00>e</color><color=#80ff00>w</color><color=#00ff00>T</color><color=#00ff80>a</color><color=#00ffff>g</color><color=#0000ff>s</color> <color=#8b00ff>-</color><color=#ffffff></b>";
-                        overlay = s_plate.Text4.isOverlay;
+                        s_plate.Text4.isOverlay = overlay;
                     }
                     if (s_tagsArr[i].Text2Active)
                     {
@@ -215,7 +216,7 @@ namespace FewTags
                         s_plate.Text2.enabled = true;
                         s_plate.Text2.gameObject.SetActive(true);
                         s_plate.Text2.gameObject.transform.parent.gameObject.SetActive(true);
-                        overlay = s_plate.Text2.isOverlay;
+                        s_plate.Text2.isOverlay = overlay;
                     }
                     if (s_tagsArr[i].Text3Active)
                     {
@@ -223,7 +224,7 @@ namespace FewTags
                         s_plate.Text3.enabled = true;
                         s_plate.Text3.gameObject.SetActive(true);
                         s_plate.Text3.gameObject.transform.parent.gameObject.SetActive(true);
-                        overlay = s_plate.Text3.isOverlay;
+                        s_plate.Text3.isOverlay = overlay;
                     }
                     if (s_tagsArr[i].BigTextActive)
                     {
@@ -231,7 +232,7 @@ namespace FewTags
                         s_plate.Text5.enabled = true;
                         s_plate.Text5.gameObject.SetActive(true);
                         s_plate.Text5.gameObject.transform.parent.gameObject.SetActive(true);
-                        overlay = s_plate.Text5.isOverlay;
+                        s_plate.Text5.isOverlay = overlay;
                     }
                     if (!s_tagsArr[i].Text2Active)
                     {
