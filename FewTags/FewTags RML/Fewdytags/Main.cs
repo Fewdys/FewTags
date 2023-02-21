@@ -42,8 +42,9 @@ namespace FewTags
 
         public override void OnApplicationLateStart()
         {
-            new WaitForSeconds(2f);
+            new WaitForSeconds(3f);
             NativeHook();
+            //Task.Run(() => { OnPlayer.InitPatches(); });
             UpdateTags();
         }
 
@@ -60,7 +61,6 @@ namespace FewTags
             MelonLogger.Msg(ConsoleColor.Green, "Finished Fetching Tags (This Message Doesn't Appear When Tags Are ReFetched)");
             MelonLogger.Msg(ConsoleColor.Green, "Tagged Players - Nameplate ESP On: RightShift + O (Rejoin Required)");
             MelonLogger.Msg(ConsoleColor.Red, "Tagged Players - Nameplate ESP Off: RightShift + P (Rejoin Required)");
-            //Task.Run(() => { OnPlayer.InitPatches(); });
 
             //Checks For Other Mods (Positions For A Fixed ProPlates and Snaxy Aren't Updated - Abyss Positions Might Not Be Updated Now Due To It Being C++)
             //If Nothing Is Loaded
