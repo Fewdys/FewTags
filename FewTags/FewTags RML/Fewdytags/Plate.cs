@@ -30,10 +30,10 @@ namespace FewTags
         public bool overlay;
 
         ~Plate() { _rectTransforms = null; _gameObject = null; }
-        public Plate(VRC.Player player)
+        public Plate(VRC.Player __0)
         {
             //Main Plate
-            _gameObject = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
+            _gameObject = GameObject.Instantiate(__0._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, __0._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
             _gameObject.name = "FewTagsPlate";
             Text = _gameObject.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
             _rectTransforms = _gameObject.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlate").ToArray();
@@ -51,7 +51,7 @@ namespace FewTags
             Text.text = "";
 
             //Plate 2
-            _gameObject2 = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
+            _gameObject2 = GameObject.Instantiate(__0._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, __0._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
             _gameObject2.name = "FewTagsPlate2";
             Text2 = _gameObject2.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
             _rectTransforms2 = _gameObject2.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlate2").ToArray();
@@ -69,7 +69,7 @@ namespace FewTags
             Text2.text = "";
 
             //Plate3
-            _gameObject3 = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
+            _gameObject3 = GameObject.Instantiate(__0._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, __0._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
             _gameObject3.name = "FewTagsPlate3";
             Text3 = _gameObject3.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
             _rectTransforms3 = _gameObject3.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsPlate3").ToArray();
@@ -87,7 +87,7 @@ namespace FewTags
             Text3.text = "";
 
             //Plate4
-            _gameObject4 = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject; ;
+            _gameObject4 = GameObject.Instantiate(__0._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, __0._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject; ;
             _gameObject4.name = "FewTags";
             Text4 = _gameObject4.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
             _rectTransforms4 = _gameObject4.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTags").ToArray();
@@ -105,7 +105,7 @@ namespace FewTags
             Text4.text = "";
 
             //BigPlate
-            _gameObject5 = GameObject.Instantiate(player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
+            _gameObject5 = GameObject.Instantiate(__0._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5, __0._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_0.transform).gameObject;
             _gameObject5.name = "FewTagsBigPlate";
             Text5 = _gameObject5.GetComponentsInChildren<TMPro.TextMeshProUGUI>().First(x => x.name == "Trust Text");
             _rectTransforms5 = _gameObject5.GetComponentsInChildren<RectTransform>().Where(x => x.name != "Trust Text" && x.name != "FewTagsBigPlate").ToArray();
