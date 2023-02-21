@@ -22,7 +22,7 @@ namespace FewTags
     public class Main : MelonMod
     {
         private static Json.Tags s_tags { get; set; }
-        private static string s_rawTags { get; set; }
+        public static string s_rawTags { get; set; }
 
         private static MethodInfo s_joinMethod { get; set; }
         public static bool SnaxyTagsLoaded { get; private set; }
@@ -55,6 +55,7 @@ namespace FewTags
             MelonLogger.Msg(ConsoleColor.Green, "Finished Fetching Tags (This Message Doesn't Appear When Tags Are ReFetched)");
             MelonLogger.Msg(ConsoleColor.Green, "Tagged Players - Nameplate ESP On: RightShift + O (Rejoin Required)");
             MelonLogger.Msg(ConsoleColor.Red, "Tagged Players - Nameplate ESP Off: RightShift + P (Rejoin Required)");
+            //Task.Run(() => { OnPlayer.InitPatches(); });
 
             //Checks For Other Mods (Positions For A Fixed ProPlates and Snaxy Aren't Updated - Abyss Positions Might Not Be Updated Now Due To It Being C++)
             //If Nothing Is Loaded
@@ -170,7 +171,7 @@ namespace FewTags
         private static Json.Tag[] s_tagsArr { get; set; }
 
 
-        private static void PlateHandler(VRC.Player vrcPlayer, bool overlay)
+        public static void PlateHandler(VRC.Player vrcPlayer, bool overlay)
         {
             try
             {
@@ -260,7 +261,7 @@ namespace FewTags
             catch { }
         }
 
-        static void UpdateMyChatBoxOnJoin(Player vrcPlayer)
+        public static void UpdateMyChatBoxOnJoin(Player vrcPlayer)
         {
             try
             {
