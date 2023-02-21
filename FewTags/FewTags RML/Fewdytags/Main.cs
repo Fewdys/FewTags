@@ -40,6 +40,13 @@ namespace FewTags
         private delegate IntPtr userJoined(IntPtr _instance, IntPtr _user, IntPtr _methodinfo);
         private static userJoined s_userJoined;
 
+        public override void OnApplicationLateStart()
+        {
+            new WaitForSeconds(2f);
+            NativeHook();
+            UpdateTags();
+        }
+
         public override void OnApplicationStart()
         {
             //SnaxyTagsLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "SnaxyTagsV2");
@@ -49,8 +56,6 @@ namespace FewTags
             VanixClientLoaded = MelonHandler.Mods.Any(m => m.Info.Name == "Vanix Client");
             MelonLogger.Msg(ConsoleColor.Green, "Started FewTags");
             MelonLogger.Msg(ConsoleColor.DarkCyan, "To ReFetch Tags Press L + F (Rejoin Required)");
-            NativeHook();
-            UpdateTags();
             overlay = false;
             MelonLogger.Msg(ConsoleColor.Green, "Finished Fetching Tags (This Message Doesn't Appear When Tags Are ReFetched)");
             MelonLogger.Msg(ConsoleColor.Green, "Tagged Players - Nameplate ESP On: RightShift + O (Rejoin Required)");
@@ -137,7 +142,7 @@ namespace FewTags
                 {
                     if (mt[j].Type != UnhollowerRuntimeLib.XrefScans.XrefType.Global) continue;
 
-                    if (mt[j].ReadAsObject().ToString().Contains("OnPlayerJoin"))
+                    if (mt[j].ReadAsObject().ToString().Contains("OnPlayer"))
                     {
                         var methodPointer = *(IntPtr*)(IntPtr)UnhollowerBaseLib.UnhollowerUtils.GetIl2CppMethodInfoPointerFieldForGeneratedMethod(methodInfos[i]).GetValue(null);
                         MelonUtils.NativeHookAttach((IntPtr)(&methodPointer), typeof(FewTags.Main).GetMethod(nameof(OnJoin), BindingFlags.Static | BindingFlags.NonPublic)!.MethodHandle.GetFunctionPointer());
