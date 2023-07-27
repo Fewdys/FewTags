@@ -4,7 +4,7 @@ Avatar/World Creators, Known Crashers, Known Ripper/Reuploaders, VRCMG Members, 
 & People Who Just Want Whatever They Want To Be Tagged. Includes But Is Not Limited to VRChat Team
 
 # Notes
-Requires: EACMelon
+Requires: [Net 7.0](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
 
 If You Want A Tag Removed/Changed or Added Feel Free To Join The Discord.
 (The Role Needed Is In The Channel "React For Roles" Torwards The Top Of The Discord)
