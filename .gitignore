@@ -43,3 +43,10 @@
 /FewTags/FewTags Rewrite/FewTags/obj
 /FewTags/FewTags Rewrite/FewTags/Properties
 /FewTags/FewTags Rewrite/FewTags/OnPlayer.cs
+/Newtonsoft.Json.dll
+/PushToFewTags.deps.json
+/PushToFewTags.dll
+/PushToFewTags.exe
+/PushToFewTags.exe.lnk
+/PushToFewTags.pdb
+/PushToFewTags.runtimeconfig.json
