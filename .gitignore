@@ -95,3 +95,13 @@
 /AddMalicious.pdb
 /AddMalicious.runtimeconfig.json
 /malicious.txt
+/AddClientUser.deps.json
+/AddClientUser.dll
+/AddClientUser.exe
+/AddClientUser.runtimeconfig.json
+/AddCrasher.deps.json
+/AddCrasher.dll
+/AddCrasher.exe
+/AddCrasher.runtimeconfig.json
+/clientusers.txt
+/crashers.txt
