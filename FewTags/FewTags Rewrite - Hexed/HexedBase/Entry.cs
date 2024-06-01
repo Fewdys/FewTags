@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using TMPro;
 
 namespace FewTags
 {
@@ -93,7 +94,7 @@ namespace FewTags
         {
             if (player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5 != null)
             {
-                player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5.transform.FindChild("Trust Text").gameObject.GetComponent<NameplateTextMeshProUGUI>().isOverlay = overlay;
+                player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5.transform.FindChild("Trust Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>().isOverlay = overlay; // Why The Fuck Was I Searching For The Specific VRC Class When I Don't Do That Anywhere Else
             }
         }
 
