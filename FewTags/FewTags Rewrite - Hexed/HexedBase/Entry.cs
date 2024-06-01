@@ -93,7 +93,7 @@ namespace FewTags
         {
             if (player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5 != null)
             {
-                player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5.transform.FindChild("Trust Text").gameObject.GetComponent<TextMeshProUGUI1PublicObBoMaUnique>().isOverlay = overlay;
+                player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5.transform.FindChild("Trust Text").gameObject.GetComponent<NameplateTextMeshProUGUI>().isOverlay = overlay;
             }
         }
 
