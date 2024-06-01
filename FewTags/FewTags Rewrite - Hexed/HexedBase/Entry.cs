@@ -19,22 +19,22 @@ namespace FewTags
         private static string s_stringInstance { get; set; }
         public static bool overlay = false;
         public static List<VRC.Player> p = new List<VRC.Player>();
-        public override void OnLoad()
+        public override void OnLoad(string[] args = null)
         {
             // Entry thats getting called by HexedLoader 
             UpdateTags();
-            Console.WriteLine("Started FewTags");
-            Console.WriteLine("To ReFetch Tags Press L + F (Rejoin Required)");
-            Console.WriteLine("Finished Fetching Tags (This Message Doesn't Appear When Tags Are ReFetched)");
-            Console.WriteLine("Tagged Players - Nameplate ESP On/Off: RightShift + O (Rejoin Required)");
+            //Console.WriteLine("Started FewTags");
+            //Console.WriteLine("To ReFetch Tags Press L + F (Rejoin Required)");
+            //Console.WriteLine("Finished Fetching Tags (This Message Doesn't Appear When Tags Are ReFetched)");
+            //Console.WriteLine("Tagged Players - Nameplate ESP On/Off: RightShift + O (Rejoin Required)");
 
             // Positions For HexedClient Not Loaded
-            //PositionID = -75.95f;
-            //Position = -101.95f;
+            PositionID = -75.95f;
+            Position = -101.95f;
 
             // Positions For HexedClient Loaded
-            PositionID = -102.95f;
-            Position = -130.95f;
+            //PositionID = -102.95f;
+            //Position = -130.95f;
 
             PositionBigText = 273.75f; // big plate position the same for both
 
@@ -64,14 +64,14 @@ namespace FewTags
                 platestatic.TextM.isOverlay = set;
                 platestatic.TextBP.isOverlay = set;
             }
-            if (set == true)
+            /*if (set == true)
             {
                 Console.WriteLine("(Tagged Players) Nameplate ESP On");
             }
             else if (set == false)
             {
                 Console.WriteLine("(Tagged Players) Nameplate ESP Off");
-            }
+            }*/
         }
 
         public static void UpdateTags()
@@ -82,7 +82,7 @@ namespace FewTags
                 s_rawTags = wc.DownloadString("https://raw.githubusercontent.com/Fewdys/FewTags/main/FewTags.json");
                 s_tags = JsonSerializer.Deserialize<Json._Tags>(s_rawTags);
             }
-            Console.WriteLine("Fetching Tags (If L + F Was Pressed This Could Potentially Cause Some Lag)");
+            //Console.WriteLine("Fetching Tags (If L + F Was Pressed This Could Potentially Cause Some Lag)");
         }
 
         private static Plate s_plate { get; set; }
@@ -93,7 +93,7 @@ namespace FewTags
         {
             if (player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5 != null)
             {
-                player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5.transform.FindChild("Trust Text").gameObject.GetComponent<NameplateTextMeshProUGUI>().isOverlay = overlay;
+                player._vrcplayer.field_Public_PlayerNameplate_0.field_Public_GameObject_5.transform.FindChild("Trust Text").gameObject.GetComponent<TextMeshProUGUI1PublicObBoMaUnique>().isOverlay = overlay;
             }
         }
 
@@ -110,10 +110,10 @@ namespace FewTags
                     for (int g = 0; g < s_tagsArr[i].Tag.Length; g++)
                     {
                         // HexedClient Loaded
-                        s_plate = new Plate(vrcPlayer, -158.75f - (g * 28f), overlay);
+                        //s_plate = new Plate(vrcPlayer, -158.75f - (g * 28f), overlay);
 
                         // HexedClient Not Loaded
-                        //s_plate = new Plate(vrcPlayer, -128.75f - (g * 28f), overlay);
+                        s_plate = new Plate(vrcPlayer, -128.75f - (g * 28f), overlay);
 
                         if (s_tagsArr[i].TextActive)
                         {
