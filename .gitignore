@@ -111,3 +111,9 @@
 /updated.json
 /FewTags/FewTags Rewrite - Hexed/HexedBase/FewTags-Hexed.csproj
 /FewTags/FewTags Bepin
+/FewTags/FewTags External/obj/Debug/net8.0
+/FewTags/FewTags External/obj/Release/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/FewTags/FewTags External/obj/Release/net8.0/FewTags External.AssemblyInfo.cs
+/FewTags/FewTags External/obj/Release/net8.0/FewTags External.AssemblyInfoInputs.cache
+/FewTags/FewTags External/obj/Release/net8.0/FewTags External.assets.cache
+/FewTags/FewTags External/obj/Release/net8.0/FewTags External.GeneratedMSBuildEditorConfig.editorconfig
