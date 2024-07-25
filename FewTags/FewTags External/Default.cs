@@ -19,9 +19,9 @@ namespace FewTags
         private static string? Malicious;
         private static long LastReadOffset;
 
-        private static FewTags.Json._Tags s_tags { get; set; }
-        public static string s_rawTags { get; set; }
-        public static FewTags.Json.Tags[] s_tagsArr { get; set; }
+        private static FewTags.Json._Tags? s_tags { get; set; }
+        public static string? s_rawTags { get; set; }
+        public static FewTags.Json.Tags[]? s_tagsArr { get; set; }
 
         private static void UpdateTags()
         {
