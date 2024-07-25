@@ -117,3 +117,9 @@
 /FewTags/FewTags External/obj/Release/net8.0/FewTags External.AssemblyInfoInputs.cache
 /FewTags/FewTags External/obj/Release/net8.0/FewTags External.assets.cache
 /FewTags/FewTags External/obj/Release/net8.0/FewTags External.GeneratedMSBuildEditorConfig.editorconfig
+/FewTags/FewTags External/bin
+/FewTags/FewTags External/obj/publish/win-x64
+/FewTags/FewTags External/obj/Release/net8.0
+/FewTags/FewTags External/obj/FewTags External.csproj.nuget.dgspec.json
+/FewTags/FewTags External/obj/project.assets.json
+/FewTags/FewTags External/obj/project.nuget.cache
