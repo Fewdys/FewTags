@@ -123,7 +123,7 @@ namespace FewTags
             Log.Msg(set ? ConsoleColor.Green : ConsoleColor.Red, $"(Tagged Players) Nameplate ESP {(set ? "On" : "Off")}");
         }
 
-        async void UpdateTags()
+        public static void UpdateTags()
         {
             try
             {
