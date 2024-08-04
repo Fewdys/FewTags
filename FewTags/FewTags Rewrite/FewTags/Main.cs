@@ -96,10 +96,14 @@ namespace FewTags
 
                     if (players.Count != 0)
                     {
-                        for (int i = 0; i < players.Count; i++)
+                        try
                         {
-                            NameplateESP(players[i]);
+                            for (int i = 0; i < players.Count; i++)
+                            {
+                                NameplateESP(players[i]);
+                            }
                         }
+                        catch (Exception exp) { Log.Msg(ConsoleColor.Red, "Error Changing Overlay/Nameplate ESP For A Player" + "\nError: " + exp.Message + "\nException StackTrace: " + exp.StackTrace + "\nException Data: " + exp.Data); }
                     }
                 }
             }
