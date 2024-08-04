@@ -18,20 +18,17 @@ namespace FewTags
 {
     public class Main : MelonMod
     {
-        private static Json._Tags? s_tags;
-        private static string? s_rawTags;
-
-        private static MethodInfo? s_joinMethod;
+        private static Json._Tags? s_tags {  get; set; }
+        private static string? s_rawTags { get; set; }
         public static bool SnaxyTagsLoaded { get; private set; }
         public static bool AbyssClientLoaded { get; private set; }
         public static bool NameplateStatsLoaded { get; private set; }
-        public static bool VanixClientLoaded { get; private set; }
         internal static float Position { get; set; }
         internal static float Position2 { get; set; }
         internal static float Position3 { get; set; }
         internal static float PositionID { get; set; }
         internal static float PositionBigText { get; set; }
-        private static string? s_stringInstance;
+        private static string? s_stringInstance { get; set; }
         public static bool overlay = false;
 
         private delegate IntPtr userJoined(IntPtr _instance, IntPtr _user, IntPtr _methodinfo);
@@ -128,7 +125,7 @@ namespace FewTags
             {
                 using (WebClient wc = new WebClient())
                 {
-                    s_rawTags = await wc.DownloadStringTaskAsync("https://raw.githubusercontent.com/Fewdys/FewTags/main/FewTags.json");
+                    s_rawTags = wc.DownloadString("https://raw.githubusercontent.com/Fewdys/FewTags/main/FewTags.json");
                     s_tags = JsonConvert.DeserializeObject<Json._Tags>(s_rawTags);
                 }
                 Log.Msg(ConsoleColor.Yellow, "Fetching Tags (If L + F Was Pressed This Could Potentially Cause Some Lag)");
@@ -139,9 +136,9 @@ namespace FewTags
             }
         }
 
-        private static Plate s_plate;
-        private static PlateStatic platestatic;
-        private static Json.Tags[]? s_tagsArr; // no longer used
+        private static Plate s_plate { get; set; }
+        private static PlateStatic platestatic { get; set; }
+        private static Json.Tags[]? s_tagsArr { get; set; } // no longer used
 
         public static void NameplateESP(VRC.Player player)
         {
