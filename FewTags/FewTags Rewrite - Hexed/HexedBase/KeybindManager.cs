@@ -7,7 +7,7 @@ namespace FewTags
     {
         public static void Update()
         {
-            if (Input.GetKeyDown(KeyCode.F) & Input.GetKey(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.F) && Input.GetKey(KeyCode.L))
             {
                 Entry.UpdateTags();
             }
