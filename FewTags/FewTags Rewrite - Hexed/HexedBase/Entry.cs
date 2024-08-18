@@ -99,64 +99,43 @@ namespace FewTags
         {
             try
             {
+                if (s_tags == null) return;
                 platestatic = new PlateStatic(vrcPlayer, overlay);
-                s_tagsArr = s_tags?.records.Where(x => x.UserID == vrcPlayer.field_Private_APIUser_0.id).ToArray();
-                for (int i = 0; i < s_tagsArr?.Length; i++)
+                //s_tagsArr = s_tags.records.Where(x => x.UserID == vrcPlayer.field_Private_APIUser_0.id).ToArray();
+                string uid = vrcPlayer.field_Private_APIUser_0.id;
+
+                for (int i = 0; i < s_tags.records.Count/*s_tagsArr.Length*/; i++)
                 {
-                    if (!s_tagsArr[i].Active) continue;
-                    s_stringInstance = s_tagsArr[i].Size == null ? "" : s_tagsArr[i].Size;
-                    for (int g = 0; g < s_tagsArr[i].Tag.Length; g++)
-                    {
-                        // HexedClient Loaded
-                        //s_plate = new Plate(vrcPlayer, -158.75f - (g * 28f), overlay);
+                    var user = s_tags.records[i];
+                    if (user.UserID != uid) continue;
+                    if (!user.Active) continue;
 
-                        // HexedClient Not Loaded
-                        s_plate = new Plate(vrcPlayer, -128.75f - (g * 28f), overlay);
+                    s_stringInstance = user.Size ?? "";
+                    for (int g = 0; g < user.Tag.Length/*s_tagsArr[i].Tag.Length*/; g++)
+                    {
+                        s_plate = new Plate(vrcPlayer, NameplateStatsLoaded || SnaxyTagsLoaded ? -158.75f - (g * 28f) : -128.75f - (g * 28f), overlay);
+                        s_plate.Text.text = user.Tag[g];
+                        s_plate.Text.enabled = user.TextActive; // enable or disable plate text based on our bool
+                        s_plate.Text.gameObject.SetActive(user.TextActive); // enable or disable plate based on our bool
+                        s_plate.Text.isOverlay = overlay; // not needed as all plates overlay when you overlay one of them
+                    }
 
-                        if (s_tagsArr[i].TextActive)
-                        {
-                            s_plate.Text.text += $"{s_tagsArr[i].Tag[g]}";
-                            s_plate.Text.enabled = true;
-                            s_plate.Text.gameObject.SetActive(true);
-                            s_plate.Text.gameObject.transform.parent.gameObject.SetActive(true);
-                            s_plate.Text.isOverlay = overlay;
-                        }
-                        if (!s_tagsArr[i].TextActive)
-                        {
-                            s_plate.Text.enabled = false;
-                            s_plate.Text.gameObject.SetActive(false);
-                            s_plate.Text.gameObject.transform.parent.gameObject.SetActive(false);
-                        }
-                    }
-                    platestatic.TextID.text = $"<color=#ffffff>[</color><color=#808080>{s_tagsArr[i].id}</color><color=#ffffff>]";
-                    platestatic.TextID.isOverlay = overlay;
-                    if (s_tagsArr[i].Malicious)
-                    {
-                        platestatic.TextM.text += $"</color><color=#ff0000>Malicious User</color>";
-                        platestatic.TextM.isOverlay = overlay;
-                    }
-                    if (!s_tagsArr[i].Malicious)
-                    {
-                        platestatic.TextM.text += $"</color><b><color=#ff0000>-</color> <color=#ff7f00>F</color><color=#ffff00>e</color><color=#80ff00>w</color><color=#00ff00>T</color><color=#00ff80>a</color><color=#00ffff>g</color><color=#0000ff>s</color> <color=#8b00ff>-</color><color=#ffffff></b>";
-                        platestatic.TextM.isOverlay = overlay;
-                    }
-                    if (s_tagsArr[i].BigTextActive)
-                    {
-                        platestatic.TextBP.text += $"{s_stringInstance}{s_tagsArr[i].PlateBigText}</size>";
-                        platestatic.TextBP.enabled = true;
-                        platestatic.TextBP.gameObject.SetActive(true);
-                        platestatic.TextBP.gameObject.transform.parent.gameObject.SetActive(true);
-                        platestatic.TextBP.isOverlay = overlay;
-                    }
-                    if (!s_tagsArr[i].BigTextActive)
-                    {
-                        platestatic.TextBP.enabled = false;
-                        platestatic.TextBP.gameObject.SetActive(false);
-                        platestatic.TextBP.gameObject.transform.parent.gameObject.SetActive(false);
-                    }
+                    platestatic.TextID.text = "<color=#ffffff>[</color><color=#808080>" + user.id + "</color><color=#ffffff>]"; // id
+                    platestatic.TextID.isOverlay = overlay; // not needed as all plates overlay when you overlay one of them
+
+                    platestatic.TextM.text = user.Malicious ? "<color=#ff0000>Malicious User</color>" : "<b><color=#ff0000>-</color> <color=#ff7f00>F</color><color=#ffff00>e</color><color=#80ff00>w</color><color=#00ff00>T</color><color=#00ff80>a</color><color=#00ffff>g</color><color=#0000ff>s</color> <color=#8b00ff>-</color><color=#ffffff></b>";
+                    platestatic.TextM.isOverlay = overlay; // not needed as all plates overlay when you overlay one of them
+
+                    platestatic.TextBP.text = s_stringInstance + user.PlateBigText;
+                    platestatic.TextBP.enabled = user.BigTextActive; // enable or disable plate text based on our bool
+                    platestatic.TextBP.gameObject.SetActive(user.BigTextActive); // enable or disable plate based on our bool
+                    platestatic.TextBP.isOverlay = overlay; // not needed as all plates overlay when you overlay one of them
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Log.Msg(ConsoleColor.Red, "Error Handling Plates For UserID:" + vrcPlayer.field_Private_APIUser_0.id + "\nError: " + ex.Message + "\nException StackTrace: " + ex.StackTrace + "\nException Data: " + ex.Data);
+            }
         }
     }
 }
