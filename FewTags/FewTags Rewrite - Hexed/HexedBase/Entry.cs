@@ -113,7 +113,12 @@ namespace FewTags
                     s_stringInstance = user.Size ?? "";
                     for (int g = 0; g < user.Tag.Length/*s_tagsArr[i].Tag.Length*/; g++)
                     {
-                        s_plate = new Plate(vrcPlayer, NameplateStatsLoaded || SnaxyTagsLoaded ? -158.75f - (g * 28f) : -128.75f - (g * 28f), overlay);
+                        // HexedClient Loaded
+                        //s_plate = new Plate(vrcPlayer, -158.75f - (g * 28f), overlay);
+
+                        // HexedClient Not Loaded
+                        s_plate = new Plate(vrcPlayer, -128.75f - (g * 28f), overlay);
+                        
                         s_plate.Text.text = user.Tag[g];
                         s_plate.Text.enabled = user.TextActive; // enable or disable plate text based on our bool
                         s_plate.Text.gameObject.SetActive(user.TextActive); // enable or disable plate based on our bool
