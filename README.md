@@ -11,4 +11,4 @@ External Version Requires .NET6.0 Desktop Runtime, I Also Recommend Having .NET8
 If You Want A Tag Removed/Changed or Added Feel Free To Join The Discord Linked Below Or DM *@FewTags* On Discord.
 (The Role Needed To Make A Ticket In The Server Is Called 'Extra' In The Channel "React For Roles")
 
-[Discord Server Link](https://discord.gg/EN4RrZR) - Server Probably Isn't Very Active
+[Discord Server Link](https://discord.gg/A4QwEZJY6f) - Server Probably Isn't Very Active
