@@ -56,13 +56,13 @@ namespace FewTags
             if (!NameplateStatsLoaded && !SnaxyTagsLoaded)
             {
                 PositionID = -75.95f;
-                Position = -101.95f;
+                Position = -131.65f;
                 PositionBigText = 273.75f;
             }
             else if (FewTags.Main.NameplateStatsLoaded || FewTags.Main.SnaxyTagsLoaded)
             {
                 PositionID = -102.95f;
-                Position = -130.95f;
+                Position = -161.65f;
                 PositionBigText = 273.75f;
             }
         }
@@ -172,7 +172,7 @@ namespace FewTags
                     s_stringInstance = user.Size ?? "";
                     for (int g = 0; g < user.Tag.Length/*s_tagsArr[i].Tag.Length*/; g++)
                     {
-                        s_plate = new Plate(vrcPlayer, NameplateStatsLoaded || SnaxyTagsLoaded ? -158.75f - (g * 28f) : -128.75f - (g * 28f), overlay);
+                        s_plate = new Plate(vrcPlayer, Main.Position - (g * 28f), overlay);
                         s_plate.Text.text = user.Tag[g];
                         s_plate.Text.enabled = user.TextActive; // enable or disable plate text based on our bool
                         s_plate.Text.gameObject.SetActive(user.TextActive); // enable or disable plate based on our bool

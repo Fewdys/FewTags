@@ -78,7 +78,7 @@ namespace FewTags
                 }
                 catch { }
             }
-            _gameObjectM.transform.localPosition = new Vector3(0, Main.Position, 0);
+            _gameObjectM.transform.localPosition = new Vector3(0, Main.PositionID - 28f, 0);
             _gameObjectM.SetActive(true);
             TextM.text = "";
             TextM.isOverlay = overlay;
