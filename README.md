@@ -5,5 +5,5 @@ If You Want A Tag Removed/Changed or Added Feel Free To Join The Discord Linked 
 
 [Discord Server Link](https://discord.gg/A4QwEZJY6f)
 
-#### *FewTags VRChat Source Has Been Moved To It's Own Repository & Archieved As I Have Not Maintained It Since EAC Was Added & No Longer Intent On Updating It*
+#### *VRChat Source Has Been Moved To It's Own Repository & Archieved As I Have Not Maintained It Since EAC Was Added & No Longer Intent On Updating It*
 [Source](https://github.com/Fewdys/FewTags-VRC-Source)
