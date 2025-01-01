@@ -5,3 +5,5 @@ If You Want A Tag Removed/Changed or Added Feel Free To Join The Discord Linked 
 (The Role Needed To Make A Ticket In The Server Is Called 'Extra' In The Channel "React For Roles")
 
 [Discord Server Link](https://discord.gg/A4QwEZJY6f)
+
+#### Source Has Been Moved To It's Own Repository & Archieved
