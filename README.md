@@ -1,4 +1,3 @@
-# Tags
 Just A Database Of UserID's With Tags In Which I Maintain
 
 If You Want A Tag Removed/Changed or Added Feel Free To Join The Discord Linked Below & Make A Ticket or DM *@FewTags* or *@fewdy* On Discord.
