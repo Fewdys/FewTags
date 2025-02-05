@@ -1,4 +1,4 @@
-Just Databases Of UserID's With Tags/Notes In Which I Maintain Which Might Not Be 100% Accurate
+Just Databases Of UserID's With Tags/Notes In Which I Maintain Which Might Not Be 100% Accurate or Possibly Even Opinion Based.
 
 If You Want A Tag Removed/Changed or Added DM *@FewTags* or *@Fewdy* On Discord - Sensitive Information & Slurs Is NOT Allowed.
 
