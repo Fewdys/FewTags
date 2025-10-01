@@ -2,7 +2,7 @@ Just Databases Of UserID's With Tags/Notes In Which I Maintain Which Might Not B
 
 If You Want A Tag Removed/Changed or Added DM *@FewTags* On Discord or In The Case You Already Have Me Added Or Share A Mutual Server DM *@Fewdy* - Sensitive Information & Slurs Is NOT Allowed.
 
-Animated Tags Are $1.00 Per Animated Tag
+Animated Tags Are $4.00 Per Animated Tag
 
 Any Devs Looking To Use This DB Should Take A Look At Source Found Below
 
